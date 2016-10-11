@@ -1,10 +1,12 @@
-import pyscreenshot as ImageGrab
+from pyscreenshot import grab
 
 
 class ScreenshotTaker(object):
 
-    def takeFullScreenshot(self):
-        return ImageGrab.grab()
+    @staticmethod
+    def take_full_screenshot():
+        return grab()
 
-    def takeFixedSizeScreenShot(self, bbox):
-        return ImageGrab.grab(bbox=bbox)
+    @staticmethod
+    def take_fixed_size_screen_shot(bbox):
+        return grab(bbox=bbox)

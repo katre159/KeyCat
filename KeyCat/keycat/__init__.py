@@ -1,13 +1,13 @@
-
-
 import sys
-from keycat.mouse_events import FullscreenMouseEventCreator, MouseEventListener, MouseClickEventListener, EventReceiver
-from keycat.screenshot_taker import ScreenshotTaker
+from mouse_events import FullscreenMouseEventCreator, MouseEventListener, MouseClickEventListener, EventReceiver
+from screenshot_taker import ScreenshotTaker
+
 
 def main(argv):
+    mouse_click_listener = MouseClickEventListener(
+        MouseEventListener(FullscreenMouseEventCreator(ScreenshotTaker()), EventReceiver()))
 
-    mouseClickListener = MouseClickEventListener(MouseEventListener(FullscreenMouseEventCreator(ScreenshotTaker()),EventReceiver()))
-    mouseClickListener.run()
+    mouse_click_listener.run()
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='KeyCat',
-    version='',
+    version='0.0.1',
     packages=['keycat'],
     url='',
     license='',
