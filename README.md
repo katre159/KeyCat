@@ -8,3 +8,17 @@ KeyCat holds a list of program specific shortcuts, which can also be customized 
 Users can also view statistics on their keyboard and mouse usage, which will give them an overview of their progress and encourage further improvements.
 
 Although these kind of programs already exist, there are currently no programs like this for Linux, which is what we are going to change. Examples of currently existing programs: KeyRocket (Windows), AltMOUSE (Windows), Hotkey EVE (Mac), KeyCue (Mac).
+
+## Build
+~~~~
+cd KeyCat
+virtuanenv venv
+source venv/bin/activate
+python setup.py install
+pip install -r requirements.txt
+~~~~
+
+## Run
+~~~~
+python keycat
+~~~~

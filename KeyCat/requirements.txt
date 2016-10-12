@@ -1,0 +1,4 @@
+Pillow==3.4.1
+pyscreenshot==0.4.2
+PyUserInput==0.1.11
+unix==1.0
