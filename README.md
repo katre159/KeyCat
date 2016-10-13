@@ -9,14 +9,37 @@ Users can also view statistics on their keyboard and mouse usage, which will giv
 
 Although these kind of programs already exist, there are currently no programs like this for Linux, which is what we are going to change. Examples of currently existing programs: KeyRocket (Windows), AltMOUSE (Windows), Hotkey EVE (Mac), KeyCue (Mac).
 
-## Build
+## Cloning
+To clone this repository run
+~~~
+git clone <url>
+~~~
+
+## Updating
+To pull the changes in this repository run
+~~~
+git pull
+~~~
+
+## Installing dependencies
+To install necessary packages on Linux run with root permissions
+~~~
+apt-get install virtualenv
+~~~
+
+## Building
+To build project run
 ~~~~
 cd KeyCat
 virtualenv venv
 source venv/bin/activate
 python setup.py install
-pip install -r requirements.txt
 ~~~~
+
+With root permissions run
+~~~
+pip install -r requirements.txt
+~~~
 
 ## Run
 ~~~~
