@@ -12,7 +12,7 @@ Although these kind of programs already exist, there are currently no programs l
 ## Build
 ~~~~
 cd KeyCat
-virtuanenv venv
+virtualenv venv
 source venv/bin/activate
 python setup.py install
 pip install -r requirements.txt
