@@ -51,12 +51,6 @@ class MouseEventListener(object):
         if button == 1:
             if press:
                 event = self.mouse_event_creator.get_mouse_event(x, y)
-                self.event_receiver.receive_event(event)
+                self.event_receiver.receive_mouse_event(event)
 
-
-class EventReceiver(object):
-
-    @staticmethod
-    def receive_event(event):
-        print("MouseEvent: x = %s, y = %s, screenshot = %s" % (event.click_x, event.click_y, event.screenshot))
 
