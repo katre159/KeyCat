@@ -12,8 +12,9 @@ Although these kind of programs already exist, there are currently no programs l
 ## Build
 ~~~~
 cd KeyCat
-virtualenv venv
+virtualenv venv --python=python3
 source venv/bin/activate
+cd KeyCat
 python setup.py install
 pip install -r requirements.txt
 ~~~~
