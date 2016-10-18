@@ -28,6 +28,10 @@ gray_area = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 cv2.imwrite('area.png', image)
 
 textImage = Image.open('area.png')
+sharpness = ImageEnhance.Sharpness(textImage)
+sharpness.enhance(2).save('area.png')
+
+textImage = Image.open('area.png')
 
 text = pytesseract.image_to_string(textImage)
 
