@@ -5,12 +5,11 @@ import time
 
 img = cv2.imread('idea_scratch_source.png',0)
 img2 = img.copy()
-template = cv2.imread('idea_scratch_template.png',0)
+template = cv2.imread('restore_default.png',0)
 w, h = template.shape[::-1]
 
 # All the 6 methods for comparison in a list
-methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
-            'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
+methods = ['cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR_NORMED']
 
 for meth in methods:
     start_time = time.time()
