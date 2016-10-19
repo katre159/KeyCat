@@ -13,6 +13,7 @@ setup(
     install_requires=[
         'python-xlib',
         'pyscreenshot',
-        'PyUserInput'
+        'PyUserInput',
+        'screeninfo'
       ]
 )
