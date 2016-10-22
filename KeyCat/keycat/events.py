@@ -1,4 +1,4 @@
-from notify import Notify
+from notify import *
 
 
 class EventReceiver(object):
