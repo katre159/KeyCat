@@ -2,7 +2,6 @@ from pykeyboard import PyKeyboardEvent
 
 
 class KeyboardEventListener(PyKeyboardEvent):
-
     def __init__(self, keyboard_listener):
         self.keyboard_listener = keyboard_listener
         PyKeyboardEvent.__init__(self)
@@ -21,16 +20,16 @@ class KeyboardListener(object):
         else:
             self.keyboard_state_manager.key_released(keycode)
 
-class KeyboardStateChangedEvent(object):
 
+class KeyboardStateChangedEvent(object):
     def __init__(self, pressed_keys):
         self.pressed_keys = pressed_keys
 
     def __eq__(self, other):
         return self.pressed_keys == other.pressed_keys
 
-class KeyboardStateManager(object):
 
+class KeyboardStateManager(object):
     def __init__(self, event_receiver):
         self.event_receiver = event_receiver
         self.pressed_keys = []
@@ -47,4 +46,3 @@ class KeyboardStateManager(object):
 
     def get_pressed_keys(self):
         return self.pressed_keys
-
