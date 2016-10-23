@@ -14,6 +14,7 @@ setup(
         'python-xlib',
         'pyscreenshot',
         'PyUserInput',
+        'numpy',
         'screeninfo'
       ]
 )
