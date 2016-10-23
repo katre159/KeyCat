@@ -1,11 +1,75 @@
 import unittest
+import os
+from keycat.picture_util import *
 from unittest.mock import MagicMock
-
 from keycat.events import EventReceiver
 from keycat.mouse_events import FullscreenMouseEventCreator, MouseEventListener, AbstractMouseEventCreator, \
     MouseEvent, FixedSizeScreenshotEventCreator, FixedSizeScreenshotSizeError
 from keycat.screen import ScreenshotTaker, ScreenManager
 from keycat.keyboard_events import KeyboardListener, KeyboardStateManager, KeyboardStateChangedEvent
+from keycat.template_matcher import CCOEFFNORMEDTemplateMatcher, AbstractTemplateMatcher
+from PIL.PngImagePlugin import PngImageFile
+from keycat.repository import AbstractButtonRepository
+from keycat.models import ProgramButton
+from keycat.button_matcher import ButtonMatcher
+import numpy as np
+
+
+class ButtonMatcherTest(unittest.TestCase):
+    def setUp(self):
+        self.mock_button_reposotory = AbstractButtonRepository()
+        self.directory = os.path.dirname(os.path.abspath(__file__))
+
+        button_template = np.empty((24, 324), dtype=np.uint8)
+        button_templates = [button_template]
+        self.button = ProgramButton(button_templates, [])
+        buttons = [self.button]
+        self.mock_button_reposotory.find_all_buttons = MagicMock(return_value=buttons)
+        self.mock_template_matcher = AbstractTemplateMatcher()
+        self.mock_template_matcher.get_template_location = MagicMock(return_value=(40, 50))
+        self.button_matcher = ButtonMatcher(self.mock_template_matcher, self.mock_button_reposotory)
+
+    def test_find_button_on_clicked_position(self):
+        found_button = self.button_matcher.find_button_on_clicked_position(40, 50, None)
+        self.assertEqual(self.button, found_button)
+
+    def test_template_found_but_not_clicked_on(self):
+        found_button = self.button_matcher.find_button_on_clicked_position(500, 50, None)
+        self.assertIsNone(found_button)
+
+    def test_template_not_found(self):
+        self.mock_template_matcher.get_template_location = MagicMock(return_value=None)
+        found_button = self.button_matcher.find_button_on_clicked_position(500, 50, None)
+        self.assertIsNone(found_button)
+
+    def test_first_template_not_matching(self):
+        button_template = np.empty((24, 324), dtype=np.uint8)
+        button_templates = [button_template, button_template]
+        button = ProgramButton(button_templates, [])
+        buttons = [button]
+        self.mock_button_reposotory.find_all_buttons = MagicMock(return_value=buttons)
+        self.mock_template_matcher.get_template_location = MagicMock(side_effect=[None, (40, 50)])
+        found_button = self.button_matcher.find_button_on_clicked_position(40, 50, None)
+        self.assertEqual(button, found_button)
+
+
+class CCOEFFNORMEDTemplateMatcherTest(unittest.TestCase):
+    def setUp(self):
+        self.directory = os.path.dirname(os.path.abspath(__file__))
+        self.screenshot = PngImageFile(os.path.join(self.directory, 'data/new_tab_selected_chrome.png'))
+        self.template = PngImageFile(os.path.join(self.directory, 'data/new_tab_template_chrome.png'))
+        self.template = convert_picture_to_grayscale(self.template)
+        self.template = convert_picture_to_numpy_array(self.template)
+        self.template_mather = CCOEFFNORMEDTemplateMatcher()
+
+    def test_template_matching(self):
+        found_loc = self.template_mather.get_template_location(self.template, self.screenshot)
+        self.assertEqual((47, 60), found_loc)
+
+    def test_not_selected(self):
+        self.screenshot_not_selected = PngImageFile(os.path.join(self.directory, 'data/new_window_selected_chrome.png'))
+        found_loc = self.template_mather.get_template_location(self.template, self.screenshot_not_selected)
+        self.assertIsNone(found_loc)
 
 
 class FullscreenMouseEventCreatorTest(unittest.TestCase):
@@ -105,7 +169,7 @@ class MouseEventListenerTest(unittest.TestCase):
     def setUp(self):
         self.mock_mouseevent_creator = AbstractMouseEventCreator(None)
         self.mock_mouseevent_creator.get_mouse_event = MagicMock(return_value=MouseEvent(10, 15, None))
-        self.mock_event_receiver = EventReceiver()
+        self.mock_event_receiver = EventReceiver(None)
         self.mock_event_receiver.receive_mouse_event = MagicMock()
         self.mouse_event_listener = MouseEventListener(self.mock_mouseevent_creator, self.mock_event_receiver)
 
@@ -150,7 +214,7 @@ class KeyboardListenerTest(unittest.TestCase):
 
 class KeyboardStateManagerTest(unittest.TestCase):
     def setUp(self):
-        self.mock_event_receiver = EventReceiver()
+        self.mock_event_receiver = EventReceiver(None)
         self.mock_event_receiver.receive_keyboard_state_change_event = MagicMock()
         self.keyboard_state_manager = KeyboardStateManager(self.mock_event_receiver)
 

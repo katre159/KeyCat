@@ -1,12 +1,17 @@
-from notify import Notify
+from notify import *
 
 
 class EventReceiver(object):
+    def __init__(self, button_matcher):
+        self.button_matcher = button_matcher
 
-    @staticmethod
-    def receive_mouse_event(event):
-        Notify.show_notification("MouseEvent: x = %s, y = %s, screenshot = %s" % (event.click_x, event.click_y, event.screenshot))
+    def receive_mouse_event(self, event):
+        Notify.show_notification(
+            "MouseEvent: x = %s, y = %s, screenshot = %s" % (event.click_x, event.click_y, event.screenshot))
+        event.screenshot.save("screenshot_x_" + str(event.click_x) + "_y_" + str(event.click_y) + ".png", "PNG")
+        button = self.button_matcher.find_button_on_clicked_position(event.click_x, event.click_y, event.screenshot)
+        if button is not None:
+            print("You clicked on button")
 
-    @staticmethod
-    def receive_keyboard_state_change_event(event):
+    def receive_keyboard_state_change_event(self, event):
         Notify.show_notification("Keys pressed : %s" % event.pressed_keys)
