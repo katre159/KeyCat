@@ -10,6 +10,7 @@ setup(
     author_email='',
     description='',
     test_suite="tests",
+    include_package_data=True,
     install_requires=[
         'python-xlib',
         'pyscreenshot',

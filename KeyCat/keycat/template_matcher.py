@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 import abc
 from keycat.picture_util import *
 
@@ -19,9 +18,9 @@ class CCOEFFNORMEDTemplateMatcher(AbstractTemplateMatcher):
 
         method = eval('cv2.TM_CCOEFF_NORMED')
 
-        res = cv2.matchTemplate(picture_array, template, method)
+        result = cv2.matchTemplate(picture_array, template, method)
         threshold = 0.8
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
 
         if max_val >= threshold:
             return max_loc

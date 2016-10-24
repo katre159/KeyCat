@@ -1,4 +1,4 @@
-import numpy as np
+import numpy
 
 
 def convert_picture_to_grayscale(picture):
@@ -6,4 +6,4 @@ def convert_picture_to_grayscale(picture):
 
 
 def convert_picture_to_numpy_array(picture):
-    return np.asarray(picture, dtype=np.uint8)
+    return numpy.asarray(picture, dtype=numpy.uint8)
