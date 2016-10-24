@@ -47,50 +47,8 @@ class FixedSizeScreenshotEventCreator(AbstractMouseEventCreator):
         self.height = height
 
     def get_mouse_event(self, x, y):
-        def get_transformed_coordinates():
-            ScreenSize = namedtuple('ScreenSize', 'width height')
-            TransformedCoords = namedtuple('TransformedCoords', 'x y screenshot_x screenshot_y')
-            screen_size = ScreenSize(*self.screen_manager.get_screen_size())
-            if x - self.width / 2 >= 0 and x + self.width / 2 <= screen_size.width \
-                    and y - self.height / 2 >= 0 and y + self.height / 2 <= screen_size.height:  # middle
-                return TransformedCoords(self.width / 2, self.height / 2, x - self.width / 2, y - self.height / 2)
-            elif x - self.width / 2 >= 0 and x + self.width / 2 <= screen_size.width \
-                    and y - self.height / 2 >= 0 and y + self.height / 2 > screen_size.height:  # lower limit
-                height_diff = (y + self.height / 2) - screen_size.height
-                return TransformedCoords(self.width / 2, self.height / 2 + height_diff, x - self.width / 2,
-                                         screen_size.height - self.height)
-            elif x - self.width / 2 >= 0 and x + self.width / 2 <= screen_size.width \
-                    and y - self.height / 2 < 0 and y + self.height / 2 <= screen_size.height:  # upper limit
-                return TransformedCoords(self.width / 2, y, x - self.width / 2, 0)
-            elif x - self.width / 2 < 0 and x + self.width / 2 <= screen_size.width \
-                    and y - self.height / 2 >= 0 and y + self.height / 2 <= screen_size.height:  # left limit
-                return TransformedCoords(x, self.height / 2, 0, y - self.height / 2)
-            elif x - self.width / 2 >= 0 and x + self.width / 2 > screen_size.width \
-                    and y - self.height / 2 >= 0 and y + self.height / 2 <= screen_size.height:  # right limit
-                width_diff = (x + self.width / 2) - screen_size.width
-                return TransformedCoords(self.width / 2 + width_diff, self.height / 2, screen_size.width - self.width,
-                                         y - self.height / 2)
-            elif x - self.width / 2 < 0 and x + self.width / 2 <= screen_size.width \
-                    and y - self.height / 2 < 0 and y + self.height / 2 <= screen_size.height:  # left upper limit
-                return TransformedCoords(x, y, 0, 0)
-            elif x - self.width / 2 >= 0 and x + self.width / 2 > screen_size.width \
-                    and y - self.height / 2 < 0 and y + self.height / 2 <= screen_size.height:  # right upper limit
-                width_diff = (x + self.width / 2) - screen_size.width
-                return TransformedCoords(self.width / 2 + width_diff, y, screen_size.width - self.width, 0)
-            elif x - self.width / 2 < 0 and x + self.width / 2 <= screen_size.width \
-                    and y - self.height / 2 >= 0 and y + self.height / 2 > screen_size.height:  # left lower limit
-                height_diff = (y + self.height / 2) - screen_size.height
-                return TransformedCoords(x, self.height / 2 + height_diff, 0, screen_size.height - self.height)
-            if x - self.width / 2 >= 0 and x + self.width / 2 > screen_size.width \
-                    and y - self.height / 2 >= 0 and y + self.height / 2 > screen_size.height:  # right lower
-                width_diff = (x + self.width / 2) - screen_size.width
-                height_diff = (y + self.height / 2) - screen_size.height
-                return TransformedCoords(self.width / 2 + width_diff, self.height / 2 + height_diff,
-                                         screen_size.width - self.width, screen_size.height - self.height)
-            else:
-                raise FixedSizeScreenshotSizeError("Fixed size screenshot size is too small for screen")
 
-        transformed_coordinates = get_transformed_coordinates()
+        transformed_coordinates = self.__get_transformed_coordinates(x, y)
 
         screenshot = self.screenshot_taker.take_fixed_size_screen_shot(
             bbox=(transformed_coordinates.screenshot_x, transformed_coordinates.screenshot_y,
@@ -98,6 +56,73 @@ class FixedSizeScreenshotEventCreator(AbstractMouseEventCreator):
                   transformed_coordinates.screenshot_y + self.height))  # X1,Y1,X2,Y2
 
         return MouseEvent(transformed_coordinates.x, transformed_coordinates.y, screenshot)
+
+    def __get_transformed_coordinates(self, x, y):
+        ScreenSize = namedtuple('ScreenSize', 'width height')
+        TransformedCoords = namedtuple('TransformedCoords', 'x y screenshot_x screenshot_y')
+        screen_size = ScreenSize(*self.screen_manager.get_screen_size())
+
+        def is_x_coord_in_middle():
+            return x - self.width / 2 >= 0 and x + self.width / 2 <= screen_size.width
+
+        def is_y_coord_in_middle():
+            return y - self.height / 2 >= 0 and y + self.height / 2 <= screen_size.height
+
+        def is_y_coord_in_lower_limit():
+            return y - self.height / 2 >= 0 and y + self.height / 2 > screen_size.height
+
+        def is_y_coord_in_upper_limit():
+            return y - self.height / 2 < 0 and y + self.height / 2 <= screen_size.height
+
+        def is_x_in_left_limit():
+            return x - self.width / 2 < 0 and x + self.width / 2 <= screen_size.width
+
+        def is_x_in_right_limit():
+            return x - self.width / 2 >= 0 and x + self.width / 2 > screen_size.width
+
+        transformed_x = 0
+        transformed_y = 0
+        screenshot_x = 0
+        screenshot_y = 0
+        x_coord_transformed = False
+        y_coord_transformed = False
+
+        if is_x_coord_in_middle():
+            transformed_x = self.width / 2
+            screenshot_x = x - self.width / 2
+            x_coord_transformed = True
+
+        if is_y_coord_in_middle():
+            transformed_y = self.height / 2
+            screenshot_y = y - self.height / 2
+            y_coord_transformed = True
+
+        if is_y_coord_in_lower_limit():
+            height_diff = (y + self.height / 2) - screen_size.height
+            transformed_y = self.height / 2 + height_diff
+            screenshot_y = screen_size.height - self.height
+            y_coord_transformed = True
+
+        if is_y_coord_in_upper_limit():
+            transformed_y = y
+            screenshot_y = 0
+            y_coord_transformed = True
+
+        if is_x_in_left_limit():
+            transformed_x = x
+            screenshot_x = 0
+            x_coord_transformed = True
+
+        if is_x_in_right_limit():
+            width_diff = (x + self.width / 2) - screen_size.width
+            transformed_x = self.width / 2 + width_diff
+            screenshot_x = screen_size.width - self.width
+            x_coord_transformed = True
+
+        if x_coord_transformed and y_coord_transformed:
+            return TransformedCoords(transformed_x, transformed_y, screenshot_x, screenshot_y)
+        else:
+            raise FixedSizeScreenshotSizeError("Fixed size screenshot size is too small for screen")
 
 
 class MouseClickEventListener(PyMouseEvent):
