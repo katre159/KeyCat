@@ -48,7 +48,7 @@ class FixedSizeScreenshotEventCreator(AbstractMouseEventCreator):
 
     def get_mouse_event(self, x, y):
 
-        transformed_coordinates = self.__get_transformed_coordinates(x, y)
+        transformed_coordinates = self._get_transformed_coordinates(x, y)
 
         screenshot = self.screenshot_taker.take_fixed_size_screen_shot(
             bbox=(transformed_coordinates.screenshot_x, transformed_coordinates.screenshot_y,
@@ -57,7 +57,7 @@ class FixedSizeScreenshotEventCreator(AbstractMouseEventCreator):
 
         return MouseEvent(transformed_coordinates.x, transformed_coordinates.y, screenshot)
 
-    def __get_transformed_coordinates(self, x, y):
+    def _get_transformed_coordinates(self, x, y):
         ScreenSize = namedtuple('ScreenSize', 'width height')
         TransformedCoords = namedtuple('TransformedCoords', 'x y screenshot_x screenshot_y')
         screen_size = ScreenSize(*self.screen_manager.get_screen_size())
