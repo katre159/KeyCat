@@ -1,26 +1,27 @@
 import abc
-from keycat.models import ProgramButton
-import os
-from keycat.picture_util import *
-from PIL.PngImagePlugin import PngImageFile
+from keycat.models import Button
 
 
 class AbstractButtonRepository(object):
+    def __init__(self, session):
+        self.session = session
+
     @abc.abstractmethod
     def find_all_buttons(self):
         return []
 
+    @abc.abstractmethod
+    def save_button(self, button):
+        pass
 
-class HardCodedButtonReposotory(AbstractButtonRepository):
-    def __init__(self):
-        self.directory = os.path.dirname(os.path.abspath(__file__))
-        button_template = PngImageFile(os.path.join(self.directory, 'data/new_tab_template_chrome.png'))
-        button_template = convert_picture_to_grayscale(button_template)
-        button_template = convert_picture_to_numpy_array(button_template)
-        button_templates = [button_template]
-        button_key_coeds = [[]]
-        button = ProgramButton(button_templates, button_key_coeds)
-        self.buttons = [button]
 
+class ButtonRepository(AbstractButtonRepository):
     def find_all_buttons(self):
-        return self.buttons
+        return self.session.query(Button).all()
+
+    def save_button(self, button):
+        self.session.add(button)
+        self.session.commit()
+
+
+

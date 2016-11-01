@@ -16,6 +16,7 @@ setup(
         'pyscreenshot',
         'PyUserInput',
         'numpy',
-        'screeninfo'
+        'screeninfo',
+        'SQLAlchemy'
       ]
 )

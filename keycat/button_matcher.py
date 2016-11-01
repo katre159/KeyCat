@@ -24,14 +24,14 @@ class ButtonMatcher(object):
     def _get_matched_template_position_on_picture(self, button, picture):
         TemplatePosition = namedtuple('TemplatePosition', 'template x y')
         for template in button.templates:
-            position = self.template_matcher.get_template_location(template, picture)
+            position = self.template_matcher.get_template_location(template.get_tempalate_as_numpy_array(), picture)
             if position is not None:
                 return TemplatePosition(template, position[0], position[1])
 
         return None
 
     def _is_click_inside_template(self, click, template_position):
-        template_height = template_position.template.shape[0]
-        template_width = template_position.template.shape[1]
+        template_height = template_position.template.height
+        template_width = template_position.template.width
         return click.x >= template_position.x and click.x <= template_position.x + template_width \
                and click.y >= template_position.y and click.y <= template_position.y + template_height

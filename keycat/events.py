@@ -10,7 +10,8 @@ class EventReceiver(object):
         Notify.show_notification(
             "MouseEvent: x = %s, y = %s, screenshot = %s" % (event.click_x, event.click_y, event.screenshot))
         self._save_event_screenshot(event)
-        button = self.button_matcher.find_button_on_clicked_position(Click(event.click_x, event.click_y), event.screenshot)
+        button = self.button_matcher.find_button_on_clicked_position(Click(event.click_x, event.click_y),
+                                                                     event.screenshot)
         if button is not None:
             print("You clicked on button")
 
