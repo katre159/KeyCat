@@ -12,11 +12,9 @@ setup(
     test_suite="tests",
     include_package_data=True,
     install_requires=[
-	'Pillow',
-        # 'python-xlib',
+        'Pillow',
         'pyscreenshot',
         'PyUserInput',
-        # 'numpy',
         'screeninfo'
-      ]
+    ]
 )
