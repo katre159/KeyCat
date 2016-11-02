@@ -24,13 +24,13 @@ git pull
 ## Installing dependencies
 To install necessary packages on Linux run with root permissions
 ~~~
-apt-get install virtualenv
+./setup.sh
 ~~~
 
 ## Building
 To build project run
 ~~~~
-./setup.sh
+python setup.py install
 ~~~~
 
 ## Run
