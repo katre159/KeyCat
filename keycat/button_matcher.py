@@ -24,7 +24,7 @@ class ButtonMatcher(object):
     def _get_matched_template_position_on_picture(self, button, picture):
         TemplatePosition = namedtuple('TemplatePosition', 'template x y')
         for template in button.templates:
-            position = self.template_matcher.get_template_location(template.get_tempalate_as_numpy_array(), picture)
+            position = self.template_matcher.get_template_location(template.get_template_as_numpy_array(), picture)
             if position is not None:
                 return TemplatePosition(template, position[0], position[1])
 

@@ -1,7 +1,8 @@
 import numpy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Unicode
+
 
 Base = declarative_base()
 
@@ -20,7 +21,7 @@ class Template(Base):
     __tablename__ = 'template'
 
     id = Column(Integer, primary_key=True)
-    template_string = Column(String)
+    template_string = Column(String(convert_unicode=True))
     width = Column(Integer)
     height = Column(Integer)
     button_id = Column(Integer, ForeignKey('button.id'))
@@ -31,7 +32,7 @@ class Template(Base):
         self.width = width
         self.height = height
 
-    def get_tempalate_as_numpy_array(self):
+    def get_template_as_numpy_array(self):
         return numpy.reshape(numpy.fromstring(self.template_string, dtype=numpy.uint8), (self.height, self.width))
 
 
