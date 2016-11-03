@@ -9,7 +9,7 @@ from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
 
 
-def main(argv):
+def main():
     button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), HardCodedButtonReposotory())
 
     event_receiver = EventReceiver(button_matcher)
@@ -27,4 +27,4 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv))
+    sys.exit(main())
