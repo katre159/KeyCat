@@ -16,5 +16,6 @@ setup(
         'pyscreenshot',
         'PyUserInput',
         'screeninfo'
-    ]
+      ],
+    tests_require = ['mock']
 )
