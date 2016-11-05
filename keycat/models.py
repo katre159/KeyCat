@@ -1,7 +1,7 @@
 import numpy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, ForeignKey, Unicode
+from sqlalchemy import Column, Integer, String, ForeignKey,  LargeBinary
 
 
 Base = declarative_base()
@@ -21,7 +21,7 @@ class Template(Base):
     __tablename__ = 'template'
 
     id = Column(Integer, primary_key=True)
-    template_string = Column(String(convert_unicode=True))
+    template_string = Column(LargeBinary)
     width = Column(Integer)
     height = Column(Integer)
     button_id = Column(Integer, ForeignKey('button.id'))
