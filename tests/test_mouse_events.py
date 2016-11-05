@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock
+from mock import MagicMock
 from keycat.events import EventReceiver
 from keycat.mouse_events import FullscreenMouseEventCreator, FixedSizeScreenshotEventCreator, \
     FixedSizeScreenshotSizeError, AbstractMouseEventCreator, MouseEvent, MouseEventListener

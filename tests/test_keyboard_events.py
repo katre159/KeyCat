@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock
+from mock import MagicMock
 from keycat.events import EventReceiver
 from keycat.keyboard_events import KeyboardListener, KeyboardStateManager, KeyboardStateChangedEvent
 

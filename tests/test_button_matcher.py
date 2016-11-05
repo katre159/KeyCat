@@ -1,7 +1,7 @@
 import os
 import unittest
 import numpy
-from unittest.mock import MagicMock
+from mock import MagicMock
 from keycat.button_matcher import ButtonMatcher, Click
 from keycat.models import ProgramButton
 from keycat.repository import AbstractButtonRepository

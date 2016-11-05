@@ -17,5 +17,6 @@ setup(
         'PyUserInput',
         'numpy',
         'screeninfo'
-      ]
+      ],
+    tests_require = ['mock']
 )
