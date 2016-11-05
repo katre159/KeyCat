@@ -1,7 +1,7 @@
 import abc
-from keycat.models import ProgramButton
+from models import ProgramButton
 import os
-from keycat.picture_util import *
+from picture_util import *
 from PIL.PngImagePlugin import PngImageFile
 
 

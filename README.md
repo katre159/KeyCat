@@ -24,25 +24,19 @@ git pull
 ## Installing dependencies
 To install necessary packages on Linux run with root permissions
 ~~~
-apt-get install virtualenv
+./setup.sh
 ~~~
 
 ## Building
 To build project run
 ~~~~
-cd KeyCat
-virtualenv venv --python=python3
-source venv/bin/activate
-cd KeyCat
 python setup.py install
 ~~~~
-
-With root permissions run
-~~~
-pip install -r requirements.txt
-~~~
 
 ## Run
 ~~~~
 python keycat
 ~~~~
+
+## Running tests
+TBA

@@ -1,5 +1,5 @@
 from notify import *
-from keycat.button_matcher import Click
+from button_matcher import Click
 
 
 class EventReceiver(object):
