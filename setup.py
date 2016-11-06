@@ -15,7 +15,8 @@ setup(
         'Pillow',
         'pyscreenshot',
         'PyUserInput',
-        'screeninfo'
+        'screeninfo',
+        'python-xlib'
       ],
     tests_require = ['mock']
 )

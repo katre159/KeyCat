@@ -7,18 +7,24 @@ from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardSta
 from repository import HardCodedButtonReposotory
 from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
+from keycat.program_identifier import *
 
 
 def main(argv):
+
+    program_identifier = ProgramIdentifier()
+
     button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), HardCodedButtonReposotory())
 
     event_receiver = EventReceiver(button_matcher)
 
-    keyboard_event_listener = KeyboardEventListener(KeyboardListener(KeyboardStateManager(event_receiver)))
+    keyboard_event_listener = KeyboardEventListener(KeyboardListener(
+        KeyboardStateManager(event_receiver, program_identifier)))
     keyboard_event_listener.daemon = False
     keyboard_event_listener.start()
 
-    mouse_event_creator = FixedSizeScreenshotEventCreator(ScreenshotTaker(), ScreenManager(), 700, 100)
+    mouse_event_creator = FixedSizeScreenshotEventCreator(ScreenshotTaker(), ScreenManager(), program_identifier,
+                                                          700, 100)
 
     mouse_click_listener = MouseClickEventListener(
         MouseEventListener(mouse_event_creator, event_receiver))
