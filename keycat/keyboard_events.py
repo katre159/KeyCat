@@ -1,4 +1,5 @@
 from pykeyboard import PyKeyboardEvent
+from keycat.program_identifier import *
 
 
 class KeyboardEventListener(PyKeyboardEvent):
@@ -22,27 +23,39 @@ class KeyboardListener(object):
 
 
 class KeyboardStateChangedEvent(object):
-    def __init__(self, pressed_keys):
+    def __init__(self, pressed_keys, program):
         self.pressed_keys = pressed_keys
+        self.program = program
 
     def __eq__(self, other):
-        return self.pressed_keys == other.pressed_keys
+        return self.pressed_keys == other.pressed_keys and self.program == other.program
 
 
 class KeyboardStateManager(object):
-    def __init__(self, event_receiver):
+    def __init__(self, event_receiver, program_identifier):
         self.event_receiver = event_receiver
+        self.program_identifier = program_identifier
         self.pressed_keys = []
 
     def key_pressed(self, keycode):
         if keycode not in self.pressed_keys:
             self.pressed_keys.append(keycode)
-            self.event_receiver.receive_keyboard_state_change_event(KeyboardStateChangedEvent(self.get_pressed_keys()))
+            try:
+                self.event_receiver.receive_keyboard_state_change_event(
+                    KeyboardStateChangedEvent(self.get_pressed_keys(), self.program_identifier.get_active_program()))
+            except(NoTopWindowFoundError, CantGetPIDOfWindowError) as e:
+                # TODO logging
+                pass
 
     def key_released(self, keycode):
         if keycode in self.pressed_keys:
             self.pressed_keys.remove(keycode)
-            self.event_receiver.receive_keyboard_state_change_event(KeyboardStateChangedEvent(self.get_pressed_keys()))
+            try:
+                self.event_receiver.receive_keyboard_state_change_event(
+                    KeyboardStateChangedEvent(self.get_pressed_keys(), self.program_identifier.get_active_program()))
+            except(NoTopWindowFoundError, CantGetPIDOfWindowError) as e:
+                # TODO logging
+                pass
 
     def get_pressed_keys(self):
         return self.pressed_keys
