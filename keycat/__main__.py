@@ -7,10 +7,12 @@ from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardSta
 from repository import HardCodedButtonReposotory
 from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
-from keycat.program_identifier import *
+from program_identifier import *
+from desktop_entry import create_desktop_entry
 
 
 def main(argv):
+    create_desktop_entry()
 
     program_identifier = ProgramIdentifier()
 
