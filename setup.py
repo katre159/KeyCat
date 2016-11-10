@@ -24,6 +24,6 @@ setup(
         'console_scripts': [
             'keycat=keycat.__main__:main',
         ],
-    }
+    },
     tests_require = ['mock']
 )
