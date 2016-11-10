@@ -1,14 +1,16 @@
 from setuptools import setup
+from keycat import _VERSION
 
 setup(
     name='KeyCat',
-    version='0.0.1',
+    version=_VERSION,
     packages=['keycat'],
-    url='',
+    url='https://github.com/KatreMetsvahi/KeyCat',
+    download_url='https://github.com/KatreMetsvahi/KeyCat/tarball/' + _VERSION,
     license='',
     author='',
     author_email='',
-    description='',
+    description='KeyCat',
     test_suite="tests",
     include_package_data=True,
     install_requires=[
@@ -17,6 +19,11 @@ setup(
         'PyUserInput',
         'screeninfo',
         'python-xlib'
-      ],
+    ],
+    entry_points={
+        'console_scripts': [
+            'keycat=keycat.__main__:main',
+        ],
+    }
     tests_require = ['mock']
 )

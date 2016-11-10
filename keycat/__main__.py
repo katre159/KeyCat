@@ -10,10 +10,9 @@ from template_matcher import CCOEFFNORMEDTemplateMatcher
 from keycat.program_identifier import *
 
 
-def main(argv):
+def main():
 
     program_identifier = ProgramIdentifier()
-
     button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), HardCodedButtonReposotory())
 
     event_receiver = EventReceiver(button_matcher)
@@ -33,4 +32,4 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv))
+    sys.exit(main())
