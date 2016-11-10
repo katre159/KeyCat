@@ -38,5 +38,10 @@ python setup.py install
 python keycat
 ~~~~
 
+## Close
+~~~~
+ctrl + z
+~~~~
+
 ## Running tests
 TBA
