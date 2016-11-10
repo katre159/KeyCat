@@ -17,12 +17,12 @@ setup(
         'Pillow',
         'pyscreenshot',
         'PyUserInput',
-        'screeninfo',
-        'numpy'
+        'screeninfo'
     ],
     entry_points={
         'console_scripts': [
             'keycat=keycat.__main__:main',
         ],
     }
+    tests_require = ['mock']
 )
