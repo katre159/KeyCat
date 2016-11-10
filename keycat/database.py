@@ -13,7 +13,8 @@ def setup_database(engine):
 
 
 def get_database_scoped_session():
-    engine = create_engine('sqlite:///database.db')
+    directory = os.path.dirname(os.path.abspath(__file__))
+    engine = create_engine('sqlite:///'+os.path.join(directory,'data/database.db'))
     setup_database(engine)
     session_factory = sessionmaker(bind=engine)
     return scoped_session(session_factory)

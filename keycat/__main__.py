@@ -17,7 +17,7 @@ def main():
     load_data(button_repository)
 
     program_identifier = ProgramIdentifier()
-    button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), HardCodedButtonReposotory())
+    button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), button_repository)
 
     event_receiver = EventReceiver(button_matcher)
 
