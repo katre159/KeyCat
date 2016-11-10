@@ -1,0 +1,6 @@
+.idea/
+KeyCat.egg-info/
+build/
+dist/
+**/*.pyc
+screenshot_*

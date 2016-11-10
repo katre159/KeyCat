@@ -2,6 +2,7 @@ import abc
 
 from pymouse import PyMouseEvent
 from collections import namedtuple
+from keycat.program_identifier import *
 
 
 class Error(Exception):
@@ -15,18 +16,21 @@ class FixedSizeScreenshotSizeError(Error):
 
 
 class MouseEvent(object):
-    def __init__(self, click_x, click_y, screenshot):
+    def __init__(self, click_x, click_y, screenshot, program):
         self.click_x = click_x
         self.click_y = click_y
         self.screenshot = screenshot
+        self.program = program
 
     def __eq__(self, other):
-        return self.click_x == other.click_x and self.click_y == other.click_y and self.screenshot == other.screenshot
+        return self.click_x == other.click_x and self.click_y == other.click_y and self.screenshot == other.screenshot \
+               and self.program == other.program
 
 
 class AbstractMouseEventCreator(object):
-    def __init__(self, screenshot_taker):
+    def __init__(self, screenshot_taker, program_identifier):
         self.screenshot_taker = screenshot_taker
+        self.program_identifier = program_identifier
 
     @abc.abstractmethod
     def get_mouse_event(self, x, y):
@@ -36,28 +40,31 @@ class AbstractMouseEventCreator(object):
 class FullscreenMouseEventCreator(AbstractMouseEventCreator):
     def get_mouse_event(self, x, y):
         screenshot = self.screenshot_taker.take_full_screenshot()
-        return MouseEvent(x, y, screenshot)
+        program = self.program_identifier.get_active_program()
+        return MouseEvent(x, y, screenshot, program)
 
 
 class FixedSizeScreenshotEventCreator(AbstractMouseEventCreator):
-    def __init__(self, screenshot_taker, screen_manager, width, height):
-        AbstractMouseEventCreator.__init__(self, screenshot_taker)
+    def __init__(self, screenshot_taker, screen_manager, program_identifier, width, height):
+        AbstractMouseEventCreator.__init__(self, screenshot_taker, program_identifier)
         self.screen_manager = screen_manager
         self.width = width
         self.height = height
 
     def get_mouse_event(self, x, y):
 
-        transformed_coordinates = self.__get_transformed_coordinates(x, y)
+        transformed_coordinates = self._get_transformed_coordinates(x, y)
 
         screenshot = self.screenshot_taker.take_fixed_size_screen_shot(
             bbox=(transformed_coordinates.screenshot_x, transformed_coordinates.screenshot_y,
                   transformed_coordinates.screenshot_x + self.width,
                   transformed_coordinates.screenshot_y + self.height))  # X1,Y1,X2,Y2
 
-        return MouseEvent(transformed_coordinates.x, transformed_coordinates.y, screenshot)
+        program = self.program_identifier.get_active_program()
 
-    def __get_transformed_coordinates(self, x, y):
+        return MouseEvent(transformed_coordinates.x, transformed_coordinates.y, screenshot, program)
+
+    def _get_transformed_coordinates(self, x, y):
         ScreenSize = namedtuple('ScreenSize', 'width height')
         TransformedCoords = namedtuple('TransformedCoords', 'x y screenshot_x screenshot_y')
         screen_size = ScreenSize(*self.screen_manager.get_screen_size())
@@ -142,5 +149,9 @@ class MouseEventListener(object):
     def click(self, x, y, button, press):
         if button == 1:
             if press:
-                event = self.mouse_event_creator.get_mouse_event(x, y)
-                self.event_receiver.receive_mouse_event(event)
+                try:
+                    event = self.mouse_event_creator.get_mouse_event(x, y)
+                    self.event_receiver.receive_mouse_event(event)
+                except(NoTopWindowFoundError, CantGetPIDOfWindowError, FixedSizeScreenshotSizeError) as e:
+                    # TODO logging
+                    pass

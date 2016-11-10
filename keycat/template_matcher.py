@@ -1,6 +1,6 @@
 import cv2
 import abc
-from keycat.picture_util import *
+from picture_util import *
 
 
 class AbstractTemplateMatcher(object):
