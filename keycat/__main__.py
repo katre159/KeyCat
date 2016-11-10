@@ -4,16 +4,20 @@ from mouse_events import FullscreenMouseEventCreator, MouseEventListener, MouseC
 from events import EventReceiver
 from screen import ScreenshotTaker, ScreenManager
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
-from repository import HardCodedButtonReposotory
+from keycat.repository import ButtonRepository
 from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
+from keycat.database import *
 from keycat.program_identifier import *
 
 
 def main():
+    session = get_database_scoped_session()
+    button_repository = ButtonRepository(session)
+    load_data(button_repository)
 
     program_identifier = ProgramIdentifier()
-    button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), HardCodedButtonReposotory())
+    button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), button_repository)
 
     event_receiver = EventReceiver(button_matcher)
 

@@ -18,7 +18,8 @@ setup(
         'pyscreenshot',
         'PyUserInput',
         'screeninfo',
-        'python-xlib'
+        'python-xlib',
+        'SQLAlchemy'
     ],
     entry_points={
         'console_scripts': [
