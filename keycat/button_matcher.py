@@ -12,8 +12,8 @@ class ButtonMatcher(object):
         self.template_matcher = template_matcher
         self.button_repository = button_repository
 
-    def find_button_on_clicked_position(self, click, picture):
-        buttons = self.button_repository.find_all_buttons()
+    def find_button_on_clicked_position(self, click, picture, program):
+        buttons = self.button_repository.find_buttons_by_program(program)
         for button in buttons:
             template_position = self._get_matched_template_position_on_picture(button, picture)
             if template_position is not None and self._is_click_inside_template(click, template_position):

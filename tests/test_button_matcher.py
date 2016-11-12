@@ -18,22 +18,23 @@ class ButtonMatcherTest(unittest.TestCase):
         self.button = Button("", button_templates, [])
         buttons = [self.button]
         self.mock_button_reposotory.find_all_buttons = MagicMock(return_value=buttons)
+        self.mock_button_reposotory.find_buttons_by_program = MagicMock(return_value=buttons)
         self.mock_template_matcher = AbstractTemplateMatcher()
         self.mock_template_location = (40, 50)
         self.mock_template_matcher.get_template_location = MagicMock(return_value=self.mock_template_location)
         self.button_matcher = ButtonMatcher(self.mock_template_matcher, self.mock_button_reposotory)
 
     def test_find_button_on_clicked_position(self):
-        found_button = self.button_matcher.find_button_on_clicked_position(Click(40, 50), None)
+        found_button = self.button_matcher.find_button_on_clicked_position(Click(40, 50), None, None)
         self.assertEqual(self.button, found_button)
 
     def test_template_found_but_not_clicked_on(self):
-        found_button = self.button_matcher.find_button_on_clicked_position(Click(500, 50), None)
+        found_button = self.button_matcher.find_button_on_clicked_position(Click(500, 50), None, None)
         self.assertIsNone(found_button)
 
     def test_template_not_found(self):
         self.mock_template_matcher.get_template_location = MagicMock(return_value=None)
-        found_button = self.button_matcher.find_button_on_clicked_position(Click(500, 50), None)
+        found_button = self.button_matcher.find_button_on_clicked_position(Click(500, 50), None, None)
         self.assertIsNone(found_button)
 
     def test_first_template_not_matching(self):
@@ -41,8 +42,8 @@ class ButtonMatcherTest(unittest.TestCase):
         button_templates = [button_template, button_template]
         button = Button("", button_templates, [])
         buttons = [button]
-        self.mock_button_reposotory.find_all_buttons = MagicMock(return_value=buttons)
+        self.mock_button_reposotory.find_buttons_by_program = MagicMock(return_value=buttons)
         self.mock_template_matcher.get_template_location = MagicMock(side_effect=[None, self.mock_template_location])
-        found_button = self.button_matcher.find_button_on_clicked_position(Click(40, 50), None)
+        found_button = self.button_matcher.find_button_on_clicked_position(Click(40, 50), None, None)
         self.assertEqual(button, found_button)
 

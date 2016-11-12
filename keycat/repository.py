@@ -15,7 +15,7 @@ class AbstractButtonRepository(object):
         pass
 
     @abc.abstractmethod
-    def save_buttons(self, buttons):
+    def find_buttons_by_program(self, program):
         pass
 
 
@@ -27,8 +27,8 @@ class ButtonRepository(AbstractButtonRepository):
         self.session.add(button)
         self.session.commit()
 
-    def save_buttons(self, buttons):
-        self.session.bulk_save_objects(buttons)
+    def find_buttons_by_program(self, program):
+        return self.session.query(Button).filter_by(program=program).all()
 
 
 
