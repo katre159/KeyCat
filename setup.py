@@ -26,5 +26,5 @@ setup(
             'keycat=keycat.__main__:main',
         ],
     },
-    tests_require = ['mock']
+    tests_require=['mock']
 )

@@ -2,6 +2,7 @@ from Xlib.display import Display
 from Xlib import X
 import os
 
+
 class Error(Exception):
     """Base class for exceptions in this module."""
     pass
@@ -18,7 +19,6 @@ class CantGetPIDOfWindowError(Error):
 
 
 class ProgramIdentifier(object):
-
     def __init__(self):
         self.display = Display()
         self.pid_atom = self.display.get_atom("_NET_WM_PID")
@@ -44,14 +44,12 @@ class ProgramIdentifier(object):
         else:
             raise NoTopWindowFoundError("")
 
-
-
     def _get_top_window(self):
         focused_window = self.display.get_input_focus().focus
         if focused_window is not None and focused_window != X.NONE and focused_window != X.PointerRoot:
             parent = focused_window
 
-            while(True):
+            while (True):
                 if self.pid_atom in parent.list_properties():
                     break
                 query_result = parent.query_tree()
@@ -65,11 +63,10 @@ class ProgramIdentifier(object):
 
         return None
 
-
     def _get_window_pid(self, window):
         if self.pid_atom in window.list_properties():
             value = window.get_full_property(self.pid_atom, X.AnyPropertyType).value
             if value is not None and len(value) == 1:
-               return value[0]
+                return value[0]
 
         return None

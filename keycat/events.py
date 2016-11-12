@@ -14,7 +14,6 @@ class EventReceiver(object):
         button = self.button_matcher.find_button_on_clicked_position(Click(event.click_x, event.click_y),
                                                                      event.screenshot, event.program)
 
-
         if button is not None:
             Notify.show_notification("You clicked on button,"
                                      " shortcuts = " + " or ".join(map(lambda x: x.keycodes, button.shortcuts)))
