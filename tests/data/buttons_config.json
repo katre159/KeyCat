@@ -1,0 +1,19 @@
+{
+	"buttons" : [
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/new_tab_template_chrome.png",
+				"data/buttons/chrome/new_windows_template_chrome.png"
+			],
+			"shortcuts" : [[32, 28], [ 32,  78]]
+		},
+		{
+			"program" : "chrome2",
+			"templates" : [
+				"data/buttons/chrome/new_windows_template_chrome.png"
+			],
+			"shortcuts" : [[32, 28]]
+		}
+	]
+}

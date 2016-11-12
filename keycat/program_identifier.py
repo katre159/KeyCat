@@ -48,7 +48,7 @@ class ProgramIdentifier(object):
 
     def _get_top_window(self):
         focused_window = self.display.get_input_focus().focus
-        if focused_window is not None and focused_window != X.NONE:
+        if focused_window is not None and focused_window != X.NONE and focused_window != X.PointerRoot:
             parent = focused_window
 
             while(True):

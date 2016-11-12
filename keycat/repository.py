@@ -14,6 +14,10 @@ class AbstractButtonRepository(object):
     def save_button(self, button):
         pass
 
+    @abc.abstractmethod
+    def save_buttons(self, buttons):
+        pass
+
 
 class ButtonRepository(AbstractButtonRepository):
     def find_all_buttons(self):
@@ -22,6 +26,9 @@ class ButtonRepository(AbstractButtonRepository):
     def save_button(self, button):
         self.session.add(button)
         self.session.commit()
+
+    def save_buttons(self, buttons):
+        self.session.bulk_save_objects(buttons)
 
 
 

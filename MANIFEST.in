@@ -1,1 +1,1 @@
-include keycat/data/*
+graft keycat/data/*

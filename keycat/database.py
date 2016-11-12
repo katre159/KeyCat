@@ -1,9 +1,10 @@
 import os
 from PIL.PngImagePlugin import PngImageFile
-from keycat.models import Button, Base, Template
+from keycat.models import Button, Base, Template, Shortcut
 from keycat.picture_util import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+import json
 
 
 def setup_database(engine):
@@ -20,15 +21,52 @@ def get_database_scoped_session():
     return scoped_session(session_factory)
 
 
-def load_data(button_repository):
+def load_buttons_from_config(directory, config_file):
+    def load_template_from_file(file_path):
+
+        button_template = PngImageFile(file_path)
+        button_template = convert_picture_to_grayscale(button_template)
+        button_template = convert_picture_to_numpy_array(button_template)
+        return button_template
+
+    def get_templates(template_files):
+
+        templates = []
+
+        for template_file_path in template_files:
+            template_numpy_array = load_template_from_file(os.path.join(directory, template_file_path))
+            template = Template(template_numpy_array.tobytes(), template_numpy_array.shape[0], template_numpy_array.shape[1])
+            templates.append(template)
+
+        return templates
+
+    def get_shortcuts(shortcut_list):
+        shortcuts = []
+
+        for shortcut_values in shortcut_list:
+            shortcut =  Shortcut(",".join(map(str, shortcut_values)))
+            shortcuts.append(shortcut)
+
+        return shortcuts
+
+    buttons = []
+
+    with open(os.path.join(directory,config_file)) as data_file:
+        data = json.load(data_file)
+
+    for button in data["buttons"]:
+        templates = get_templates(button["templates"])
+        shortcuts = get_shortcuts(button["shortcuts"])
+        buttons.append(Button(button["program"], templates, shortcuts))
+
+    return buttons
+
+def load_data_to_database(button_repository):
     directory = os.path.dirname(os.path.abspath(__file__))
-    button_template = PngImageFile(os.path.join(directory, 'data/new_tab_template_chrome.png'))
-    button_template = convert_picture_to_grayscale(button_template)
-    button_template = convert_picture_to_numpy_array(button_template).tobytes()
+    buttons = load_buttons_from_config(directory, 'data/buttons_config.json')
+    [button_repository.save_button(button) for button in buttons]
 
-    template = Template(button_template, 24, 324)
 
-    button_templates = [template]
 
-    button = Button(button_templates)
-    button_repository.save_button(button)
+
+
