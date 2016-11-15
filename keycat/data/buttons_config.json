@@ -1,0 +1,117 @@
+{
+	"buttons" : [
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/new_tab_template_chrome.png"
+			],
+			"shortcuts" : [[37, 28]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/new_windows_template_chrome.png"
+			],
+			"shortcuts" : [[37, 57]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/find.png"
+			],
+			"shortcuts" : [[37, 41]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/history.png"
+			],
+			"shortcuts" : [[37, 43]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/book_manager.png"
+			],
+			"shortcuts" : [[37, 50, 32]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/book_open.png"
+			],
+			"shortcuts" : [[37, 50, 40]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/bookmark.png"
+			],
+			"shortcuts" : [[37, 40]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/clear_browsing.png"
+			],
+			"shortcuts" : [[37, 50, 119]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/dev_tools.png"
+			],
+			"shortcuts" : [[37, 50, 31]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/downloads.png"
+			],
+			"shortcuts" : [[37, 44]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/exit.png"
+			],
+			"shortcuts" : [[37, 50, 24]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/new_incognito.png"
+			],
+			"shortcuts" : [[37, 50, 57]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/print.png"
+			],
+			"shortcuts" : [[37, 33]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/report.png"
+			],
+			"shortcuts" : [[64, 50, 31]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/save_as.png"
+			],
+			"shortcuts" : [[37, 39]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/show_bookmarks_bar.png",
+              "data/buttons/chrome/show_bookmarks_bar2.png"
+			],
+			"shortcuts" : [[37, 50, 56]]
+		}
+	]
+}

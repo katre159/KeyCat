@@ -14,7 +14,7 @@ from keycat.program_identifier import *
 def main():
     session = get_database_scoped_session()
     button_repository = ButtonRepository(session)
-    load_data(button_repository)
+    load_data_to_database(button_repository)
 
     program_identifier = ProgramIdentifier()
     button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), button_repository)
