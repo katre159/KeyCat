@@ -9,8 +9,8 @@ class EventReceiver(object):
     def receive_mouse_event(self, event):
         print(
             "MouseEvent: x = %s, y = %s, program = %s  screenshot = %s" % (event.click_x, event.click_y,
-                                                                           event.program, event.screenshot,))
-        self._save_event_screenshot(event)
+                                                                           event.program, event.screenshot))
+
         button = self.button_matcher.find_button_on_clicked_position(Click(event.click_x, event.click_y),
                                                                      event.screenshot, event.program)
 
