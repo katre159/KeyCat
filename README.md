@@ -9,39 +9,47 @@ Users can also view statistics on their keyboard and mouse usage, which will giv
 
 Although these kind of programs already exist, there are currently no programs like this for Linux, which is what we are going to change. Examples of currently existing programs: KeyRocket (Windows), AltMOUSE (Windows), Hotkey EVE (Mac), KeyCue (Mac).
 
-## Cloning
+## Installation
+To install keycat run [install.sh](install.sh) script in terminal:
+~~~
+sudo sh install.sh
+~~~
+
+## Running
+Run in terminal:
+~~~
+keycat
+~~~
+
+## Contributing to the project
+To set up the build environment for keycat follow these steps:
+### Cloning
 To clone this repository run
 ~~~
 git clone <url>
 ~~~
 
-## Updating
+### Updating
 To pull the changes in this repository run
 ~~~
 git pull
 ~~~
 
-## Installing dependencies
-To install necessary packages on Linux run with root permissions
+### Building
+To build project run
 ~~~
 ./setup.sh
 ~~~
 
-## Building
-To build project run
-~~~~
-python setup.py install
-~~~~
-
-## Run
+### Run
 ~~~~
 python keycat
 ~~~~
 
-## Close
+### Close
 ~~~~
 ctrl + z
 ~~~~
 
-## Running tests
+### Running tests
 TBA
