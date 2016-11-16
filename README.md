@@ -20,6 +20,7 @@ Run in terminal:
 ~~~
 keycat
 ~~~
+To close type Ctrl+z
 
 ## Contributing to the project
 To set up the build environment for keycat follow these steps:
