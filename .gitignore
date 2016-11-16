@@ -1,6 +1,3 @@
 .idea/
-KeyCat.egg-info/
-build/
-dist/
 **/*.pyc
-screenshot_*
+/keycat/data/database.db
