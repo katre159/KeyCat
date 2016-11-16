@@ -39,7 +39,7 @@ git pull
 ### Build from source code
 To build project run
 ~~~
-./setup.sh
+sudo ./setup.sh
 ~~~
 
 ### Run using source code

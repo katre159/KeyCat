@@ -1,6 +1,6 @@
 import os
 from PIL.PngImagePlugin import PngImageFile
-from keycat.models import Button, Base, Template, Shortcut
+from models import Button, Base, Template, Shortcut
 from keycat.picture_util import *
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
