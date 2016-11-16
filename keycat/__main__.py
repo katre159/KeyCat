@@ -4,11 +4,17 @@ from mouse_events import FullscreenMouseEventCreator, MouseEventListener, MouseC
 from events import EventReceiver
 from screen import ScreenshotTaker, ScreenManager
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
-from keycat.repository import ButtonRepository
+from repository import ButtonRepository
 from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
-from keycat.database import *
-from keycat.program_identifier import *
+from database import *
+from program_identifier import *
+
+import gi
+gi.require_version("Gtk", "3.0")
+gi.require_version("AppIndicator3", "0.1")
+from gi.repository import Gtk
+from gi.repository import AppIndicator3 as appindicator
 
 
 def main():
@@ -35,5 +41,30 @@ def main():
     mouse_click_listener.start()
 
 
-if __name__ == '__main__':
+def menuitem_response(w, buf):
+    print buf
+
+
+if __name__ == "__main__":
+    ind = appindicator.Indicator.new(
+        "example-simple-client",
+        "indicator-messages",
+        appindicator.IndicatorCategory.APPLICATION_STATUS)
+    ind.set_status(appindicator.IndicatorStatus.ACTIVE)
+    ind.set_attention_icon("indicator-messages-new")
+
+    menu = Gtk.Menu()
+
+    for i in range(3):
+        buf = "Test-undermenu - %d" % i
+
+        menu_items = Gtk.MenuItem(buf)
+
+        menu.append(menu_items)
+
+        menu_items.show()
+
+    ind.set_menu(menu)
+
+    Gtk.main()
     sys.exit(main())
