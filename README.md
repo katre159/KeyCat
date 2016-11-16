@@ -35,18 +35,18 @@ To pull the changes in this repository run
 git pull
 ~~~
 
-### Building
+### Build from source code
 To build project run
 ~~~
 ./setup.sh
 ~~~
 
-### Run
+### Run using source code
 ~~~~
 python keycat
 ~~~~
 
-### Close
+### Close program
 ~~~~
 ctrl + z
 ~~~~
