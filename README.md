@@ -53,4 +53,6 @@ ctrl + z
 ~~~~
 
 ### Running tests
-TBA
+~~~~
+python setup.py tests
+~~~~
