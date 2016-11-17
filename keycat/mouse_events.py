@@ -2,7 +2,7 @@ import abc
 
 from pymouse import PyMouseEvent
 from collections import namedtuple
-from keycat.program_identifier import *
+from program_identifier import *
 
 
 class Error(Exception):
