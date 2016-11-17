@@ -1,5 +1,5 @@
 from pykeyboard import PyKeyboardEvent
-from keycat.program_identifier import *
+from program_identifier import *
 
 
 class KeyboardEventListener(PyKeyboardEvent):
