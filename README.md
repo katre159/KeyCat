@@ -10,7 +10,7 @@ Users can also view statistics on their keyboard and mouse usage, which will giv
 Although these kind of programs already exist, there are currently no programs like this for Linux, which is what we are going to change. Examples of currently existing programs: KeyRocket (Windows), AltMOUSE (Windows), Hotkey EVE (Mac), KeyCue (Mac).
 
 ## Installation
-To install keycat run [install.sh](install.sh) script in terminal:
+To install keycat run [install.sh](https://raw.githubusercontent.com/KatreMetsvahi/KeyCat/master/install.sh?token=ADa0PaoXq2_myRT8CRdqMKPGDmwVyzKDks5YNr7bwA%3D%3D) script in terminal:
 ~~~
 sudo sh install.sh
 ~~~
