@@ -17,6 +17,7 @@ class OverrideInstall(install):
                 
 destination = os.path.join(expanduser("~"), '.local', 'share', 'applications')
 icon_destination = os.path.join(expanduser("~"), '.local', 'share', 'icons', 'hicolor', '256x256', 'apps')
+icon_small_destination = os.path.join(expanduser("~"), '.local', 'share', 'icons', 'hicolor', '22x22', 'apps')
 
 setup(
     name='KeyCat',
@@ -40,7 +41,8 @@ setup(
     ],
     data_files=[
         (destination, ['keycat.desktop']),
-        (icon_destination, ['keycat.png'])
+        (icon_destination, ['keycat.png']),
+        (icon_small_destination, ['keycat-small.png'])
     ],
     entry_points={
         'console_scripts': [
