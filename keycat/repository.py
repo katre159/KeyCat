@@ -1,5 +1,5 @@
 import abc
-from keycat.models import Button
+from models import Button
 
 
 class AbstractButtonRepository(object):

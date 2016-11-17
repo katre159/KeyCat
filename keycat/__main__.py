@@ -4,11 +4,11 @@ from mouse_events import FullscreenMouseEventCreator, MouseEventListener, MouseC
 from events import EventReceiver
 from screen import ScreenshotTaker, ScreenManager
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
-from keycat.repository import ButtonRepository
+from repository import ButtonRepository
 from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
-from keycat.database import *
-from keycat.program_identifier import *
+from database import *
+from program_identifier import *
 
 
 def main():
