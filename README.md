@@ -53,7 +53,7 @@ python keycat
 
 ### Close program
 ~~~~
-ctrl + z
+ctrl + c
 ~~~~
 
 ### Running tests
