@@ -39,7 +39,11 @@ git pull
 ### Build from source code
 To build project run
 ~~~
-./setup.sh
+sudo ./setup.sh
+~~~
+If the Python packages fail to install, run
+~~~
+pip install Pillow pyscreenshot PyUserInput screeninfo python-xlib SQLAlchemy
 ~~~
 
 ### Run using source code
