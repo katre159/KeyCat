@@ -55,5 +55,5 @@ ctrl + z
 
 ### Running tests
 ~~~~
-python setup.py tests
+python setup.py test
 ~~~~
