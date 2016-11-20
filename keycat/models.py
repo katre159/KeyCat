@@ -71,4 +71,17 @@ class Shortcut(Base):
         return self.keycodes
 
 
+class ShortcutStat(Base):
+    __tablename__ = 'shortcut_stat'
+
+    id = Column(Integer, primary_key=True)
+    shortcut_id = Column(Integer, ForeignKey('shortcut.id'))
+    shortcut = relationship("Shortcut")
+    hit_count = Column(Integer)
+
+
+
+
+
+
 
