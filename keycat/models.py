@@ -91,6 +91,23 @@ class ShortcutStat(Base):
         return self.shortcut == other.shortcut and self.hit_count == other.hit_count
 
 
+class ButtonStat(Base):
+    __tablename__ = 'button_stat'
+
+    id = Column(Integer, primary_key=True)
+    button_id = Column(Integer, ForeignKey('button.id'))
+    button = relationship("Button")
+    hit_count = Column(Integer)
+
+    def __init__(self, button, hit_count):
+        self.button = button
+        self.hit_count = hit_count
+
+    def __eq__(self, other):
+        return self.button == other.button and self.hit_count == other.hit_count
+
+
+
 
 
 

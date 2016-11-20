@@ -13,8 +13,11 @@ class EventReceiver(object):
         button = self.button_matcher.find_button_on_clicked_position(Click(event.click_x, event.click_y),
                                                                      event.screenshot, event.program)
         if button is not None:
-            Notify.show_notification("You can use these shortcuts for this action : " +
-                                     " or ".join(map(lambda x: x.get_keycodes_in_readable_format(), button.shortcuts)))
+            button_stat = self.statistic_collector.button_pressed(button)
+            message = "You can use these shortcuts for this action : " \
+                      +" or ".join(map(lambda x: x.get_keycodes_in_readable_format(), button.shortcuts))
+            message += " button pressed " + str(button_stat.hit_count)
+            Notify.show_notification(message)
 
     def receive_keyboard_state_change_event(self, event):
 

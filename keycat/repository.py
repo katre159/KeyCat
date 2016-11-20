@@ -1,5 +1,5 @@
 import abc
-from models import Button, Shortcut, ShortcutStat
+from models import Button, Shortcut, ShortcutStat, ButtonStat
 
 
 class BaseRepository(object):
@@ -51,7 +51,7 @@ class AbstractShortcutStatRepository(BaseRepository):
         pass
 
     @abc.abstractmethod
-    def save_shortcut_stat(self, shortcut_stat):
+    def save(self, shortcut_stat):
         pass
 
 
@@ -60,6 +60,26 @@ class ShortcutStatRepository(AbstractShortcutStatRepository):
         return self.session.query(ShortcutStat).join(ShortcutStat.shortcut).join(Shortcut.button) \
             .filter(Button.program == program, Shortcut.keycodes == keycode).first()
 
-    def save_shortcut_stat(self, shortcut_stat):
+    def save(self, shortcut_stat):
         self.session.add(shortcut_stat)
+        self.session.commit()
+
+
+class AbstractButtonStatRepository(BaseRepository):
+    @abc.abstractmethod
+    def find_button_stat_by_button(self, button):
+        pass
+
+    @abc.abstractmethod
+    def save(self, button_stat):
+        pass
+
+
+class ButtonStatRepository(AbstractButtonStatRepository):
+
+    def find_button_stat_by_button(self, button):
+        return self.session.query(ButtonStat).filter(ButtonStat.button == button).first()
+
+    def save(self, button_stat):
+        self.session.add(button_stat)
         self.session.commit()

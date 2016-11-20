@@ -4,7 +4,7 @@ from mouse_events import FullscreenMouseEventCreator, MouseEventListener, MouseC
 from events import EventReceiver
 from screen import ScreenshotTaker, ScreenManager
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
-from repository import ButtonRepository, ShortcutRepository, ShortcutStatRepository
+from repository import ButtonRepository, ShortcutRepository, ShortcutStatRepository, ButtonStatRepository
 from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
 from database import *
@@ -24,7 +24,8 @@ def main():
     button_repository = ButtonRepository(session)
     shortcut_repository = ShortcutRepository(session)
     shortcut_stat_repository = ShortcutStatRepository(session)
-    statistic_collector = StatisticCollector(shortcut_stat_repository)
+    button_stat_repository = ButtonStatRepository(session)
+    statistic_collector = StatisticCollector(shortcut_stat_repository, button_stat_repository)
     load_data_to_database(button_repository)
 
     program_identifier = ProgramIdentifier()
