@@ -1,4 +1,5 @@
 import numpy
+from key_codes import key_label_dictionary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey,  LargeBinary
@@ -60,6 +61,9 @@ class Shortcut(Base):
     button_id = Column(Integer, ForeignKey('button.id'))
     button = relationship("Button", back_populates="shortcuts")
     keycodes = Column(String)
+
+    def get_keycodes_in_readable_format(self):
+        return "+".join(map(lambda x: key_label_dictionary[int(x)], self.keycodes.split(",")))
 
     def __init__(self, keycodes):
         self.keycodes = keycodes
