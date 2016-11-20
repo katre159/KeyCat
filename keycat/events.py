@@ -15,8 +15,8 @@ class EventReceiver(object):
         if button is not None:
             button_stat = self.statistic_collector.button_pressed(button)
             message = "You can use these shortcuts for this action : " \
-                      +" or ".join(map(lambda x: x.get_keycodes_in_readable_format(), button.shortcuts))
-            message += " button pressed " + str(button_stat.hit_count)
+                      + " or ".join(map(lambda x: x.get_keycodes_in_readable_format(), button.shortcuts))
+            message += " button pressed count " + str(button_stat.hit_count)
             Notify.show_notification(message)
 
     def receive_keyboard_state_change_event(self, event):

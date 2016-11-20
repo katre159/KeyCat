@@ -41,8 +41,8 @@ class AbstractShortcutRepository(BaseRepository):
 
 class ShortcutRepository(AbstractShortcutRepository):
     def find_shortcut_by_keycode_and_program(self, keycode, program):
-        return self.session.query(Shortcut).join(Shortcut.button) \
-            .filter(Button.program == program, Shortcut.keycodes == keycode).first()
+        return self.session.query(Shortcut).join(Shortcut.button).filter(
+            Button.program == program, Shortcut.keycodes == keycode).first()
 
 
 class AbstractShortcutStatRepository(BaseRepository):
@@ -57,8 +57,8 @@ class AbstractShortcutStatRepository(BaseRepository):
 
 class ShortcutStatRepository(AbstractShortcutStatRepository):
     def find_shortcut_stat_by_keycode_and_program(self, keycode, program):
-        return self.session.query(ShortcutStat).join(ShortcutStat.shortcut).join(Shortcut.button) \
-            .filter(Button.program == program, Shortcut.keycodes == keycode).first()
+        return self.session.query(ShortcutStat).join(ShortcutStat.shortcut).join(Shortcut.button).filter(
+            Button.program == program, Shortcut.keycodes == keycode).first()
 
     def save(self, shortcut_stat):
         self.session.add(shortcut_stat)

@@ -105,10 +105,3 @@ class ButtonStat(Base):
 
     def __eq__(self, other):
         return self.button == other.button and self.hit_count == other.hit_count
-
-
-
-
-
-
-
