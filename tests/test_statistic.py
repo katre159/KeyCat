@@ -59,6 +59,3 @@ class StatisticCollectorTest(unittest.TestCase):
         self.mock_button_stat_repository.find_button_stat_by_button.assert_called_with(button)
         self.mock_button_stat_repository.save.assert_called_with(ButtonStat(button, 2))
         self.assertEqual(returned_stat, ButtonStat(button, 2))
-
-
-
