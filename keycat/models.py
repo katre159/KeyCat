@@ -79,6 +79,12 @@ class ShortcutStat(Base):
     shortcut = relationship("Shortcut")
     hit_count = Column(Integer)
 
+    def __init__(self, shortcut, hit_count):
+        self.shortcut = shortcut
+        self.hit_count = hit_count
+
+    def __eq__(self, other):
+        return self.shortcut == other.shortcut and self.hit_count == other.hit_count
 
 
 

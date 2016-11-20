@@ -8,7 +8,6 @@ class BaseRepository(object):
 
 
 class AbstractButtonRepository(BaseRepository):
-
     @abc.abstractmethod
     def find_all_buttons(self):
         return []
@@ -35,20 +34,18 @@ class ButtonRepository(AbstractButtonRepository):
 
 
 class AbstractShortcutRepository(BaseRepository):
-
     @abc.abstractmethod
     def find_shortcut_by_keycode_and_program(self, keycode, program):
         pass
 
-class ShortcutRepository(AbstractShortcutRepository):
 
+class ShortcutRepository(AbstractShortcutRepository):
     def find_shortcut_by_keycode_and_program(self, keycode, program):
-        return self.session.query(Shortcut).join(Shortcut.button)\
-            .filter(Button.program==program, Shortcut.keycodes==keycode).first()
+        return self.session.query(Shortcut).join(Shortcut.button) \
+            .filter(Button.program == program, Shortcut.keycodes == keycode).first()
 
 
 class AbstractShortcutStatRepository(BaseRepository):
-
     @abc.abstractmethod
     def find_shortcut_stat_by_keycode_and_program(self, keycode, program):
         pass
@@ -59,7 +56,6 @@ class AbstractShortcutStatRepository(BaseRepository):
 
 
 class ShortcutStatRepository(AbstractShortcutStatRepository):
-
     def find_shortcut_stat_by_keycode_and_program(self, keycode, program):
         return self.session.query(ShortcutStat).join(ShortcutStat.shortcut).join(Shortcut.button) \
             .filter(Button.program == program, Shortcut.keycodes == keycode).first()
@@ -67,11 +63,3 @@ class ShortcutStatRepository(AbstractShortcutStatRepository):
     def save_shortcut_stat(self, shortcut_stat):
         self.session.add(shortcut_stat)
         self.session.commit()
-
-
-
-
-
-
-
-

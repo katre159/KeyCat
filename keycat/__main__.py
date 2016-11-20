@@ -18,6 +18,7 @@ def exit_program(signal, frame):
     print('Keycat terminated!')
     sys.exit(0)
 
+
 def main():
     session = get_database_scoped_session()
     button_repository = ButtonRepository(session)
@@ -47,7 +48,6 @@ def main():
     while 1:
         signal.signal(signal.SIGINT, exit_program)
         sleep(1)
-
 
 
 if __name__ == '__main__':

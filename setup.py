@@ -3,8 +3,8 @@ from keycat import _VERSION
 from setuptools.command.install import install
 import os
 
-class OverrideInstall(install):
 
+class OverrideInstall(install):
     def run(self):
         mode = 0777
         install.run(self)

@@ -20,10 +20,11 @@ class EventReceiver(object):
                                      " shortcuts = " + " or ".join(map(lambda x: x.keycodes, button.shortcuts)))
 
     def receive_keyboard_state_change_event(self, event):
+
         shortcut = self.shortcut_repository.find_shortcut_by_keycode_and_program(",".join(map(str, event.pressed_keys))
                                                                                  , event.program)
         if shortcut is not None:
-            self.statistic_collector.shortcut_pressed(shortcut)
+            shortcut_stat = self.statistic_collector.shortcut_pressed(shortcut)
 
         print("Keys pressed = %s, program = %s" % (event.pressed_keys, event.program))
 
