@@ -104,7 +104,3 @@ key_label_dictionary = {
     134: 'RSuper',
     135: 'Menu'
 }
-
-
-def get_code_label(code_value):
-    return key_label_dictionary[code_value]
