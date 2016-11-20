@@ -26,7 +26,8 @@ def main():
     shortcut_stat_repository = ShortcutStatRepository(session)
     button_stat_repository = ButtonStatRepository(session)
     statistic_collector = StatisticCollector(shortcut_stat_repository, button_stat_repository)
-    load_data_to_database(button_repository)
+    if len(button_repository.find_all_buttons()) == 0:
+        load_data_to_database(button_repository)
 
     program_identifier = ProgramIdentifier()
     button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), button_repository)

@@ -9,8 +9,9 @@ import json
 
 def setup_database(engine):
     base = Base
-    base.metadata.drop_all(engine)
-    base.metadata.create_all(engine)
+    if not(engine.dialect.has_table(engine, "shortcut_stat") and engine.dialect.has_table(engine, "button_stat")):
+        base.metadata.drop_all(engine)
+        base.metadata.create_all(engine)
 
 
 def get_database_scoped_session():
