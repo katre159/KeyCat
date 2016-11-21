@@ -13,10 +13,10 @@ class EventReceiver(object):
         button = self.button_matcher.find_button_on_clicked_position(Click(event.click_x, event.click_y),
                                                                      event.screenshot, event.program)
         if button is not None:
-            button_stat = self.statistic_collector.button_pressed(button)
-            message = "You can use these shortcuts for this action : " \
+            button_stat = self.statistic_collector.calculate_button_statistics(button)
+            message = "To do this action try pressing : " \
                       + " or ".join(map(lambda x: x.get_keycodes_in_readable_format(), button.shortcuts))
-            message += " button pressed count " + str(button_stat.hit_count)
+            message += " , button use counter: " + str(button_stat.hit_count)
             Notify.show_notification(message)
 
     def receive_keyboard_state_change_event(self, event):
@@ -24,7 +24,7 @@ class EventReceiver(object):
         shortcut = self.shortcut_repository.find_shortcut_by_keycode_and_program(",".join(map(str, event.pressed_keys))
                                                                                  , event.program)
         if shortcut is not None:
-            shortcut_stat = self.statistic_collector.shortcut_pressed(shortcut)
+            shortcut_stat = self.statistic_collector.calculate_shortcut_statistics(shortcut)
             Notify.show_notification("You have used this shortcut %d times" % (shortcut_stat.hit_count))
 
     def _save_event_screenshot(self, event):
