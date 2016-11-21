@@ -10,6 +10,27 @@
 		{
 			"program" : "chrome",
 			"templates" : [
+				"data/buttons/chrome/new_tab_button.png"
+			],
+			"shortcuts" : [[37, 28]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/new_tab.png"
+			],
+			"shortcuts" : [[37, 28]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/new_tab_3.png"
+			],
+			"shortcuts" : [[37, 28]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
 				"data/buttons/chrome/new_windows_template_chrome.png"
 			],
 			"shortcuts" : [[37, 57]]
@@ -112,6 +133,181 @@
               "data/buttons/chrome/show_bookmarks_bar2.png"
 			],
 			"shortcuts" : [[37, 50, 56]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/back_button.png"
+			],
+			"shortcuts" : [[64, 113]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/back_text.png"
+			],
+			"shortcuts" : [[64, 113]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/bookmark_button.png"
+			],
+			"shortcuts" : [[37, 50, 40]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/bookmark_tabs.png"
+			],
+			"shortcuts" : [[37, 50, 40]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/close.png"
+			],
+			"shortcuts" : [[37, 25]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/forward_button.png"
+			],
+			"shortcuts" : [[64, 114]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/forward_text.png"
+			],
+			"shortcuts" : [[64, 114]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/print_2.png"
+			],
+			"shortcuts" : [[37, 33]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/print_3.png"
+			],
+			"shortcuts" : [[37, 33]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/paste.png"
+			],
+			"shortcuts" : [[37, 55]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/paste_2.png"
+			],
+			"shortcuts" : [[37, 55]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/reload_button.png"
+			],
+			"shortcuts" : [[37, 27]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/reload.png"
+			],
+			"shortcuts" : [[37, 27]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/reload_text.png"
+			],
+			"shortcuts" : [[37, 27]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/copy.png"
+			],
+			"shortcuts" : [[37, 54]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/reopen_closed.png"
+			],
+			"shortcuts" : [[37, 50, 28]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/close_tab.png"
+			],
+			"shortcuts" : [[37, 25]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/cut.png"
+			],
+			"shortcuts" : [[37, 53]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/inspect.png"
+			],
+			"shortcuts" : [[37, 50, 31]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/reopen_closed_tab.png"
+			],
+			"shortcuts" : [[37, 50, 28]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/save_as_2.png"
+			],
+			"shortcuts" : [[37, 39]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/save_video_as.png"
+			],
+			"shortcuts" : [[37, 39]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/select_all.png"
+			],
+			"shortcuts" : [[37, 38]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/undo.png"
+			],
+			"shortcuts" : [[37, 52]]
+		},
+		{
+			"program" : "chrome",
+			"templates" : [
+				"data/buttons/chrome/view_page_source.png"
+			],
+			"shortcuts" : [[37, 30]]
 		}
 	]
 }
