@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 from keycat import _VERSION
 from setuptools.command.install import install
 import os
@@ -18,8 +18,8 @@ class OverrideInstall(install):
 setup(
     name='KeyCat',
     version=_VERSION,
-    packages=['keycat'],
-    packages_data={'keycat': 'data/*'},
+    packages=find_packages(),
+    package_data={'': ['*.db', '*.png', '*.json']},
     url='https://github.com/KatreMetsvahi/KeyCat',
     download_url='https://github.com/KatreMetsvahi/KeyCat/tarball/' + _VERSION,
     license='',
@@ -27,7 +27,6 @@ setup(
     author_email='',
     description='KeyCat',
     test_suite="tests",
-    include_package_data=True,
     install_requires=[
         'Pillow',
         'pyscreenshot',
