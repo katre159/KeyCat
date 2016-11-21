@@ -134,7 +134,7 @@ class MouseEventListenerTest(unittest.TestCase):
         self.expected_program = "MockProgram"
         self.mock_mouseevent_creator.get_mouse_event = MagicMock(
             return_value=MouseEvent(10, 15, None, self.expected_program))
-        self.mock_event_receiver = EventReceiver(None)
+        self.mock_event_receiver = EventReceiver(None, None, None)
         self.mock_event_receiver.receive_mouse_event = MagicMock()
         self.mouse_event_listener = MouseEventListener(self.mock_mouseevent_creator, self.mock_event_receiver)
 

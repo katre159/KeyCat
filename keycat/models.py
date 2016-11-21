@@ -1,4 +1,5 @@
 import numpy
+from key_codes import key_label_dictionary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey,  LargeBinary
@@ -61,6 +62,9 @@ class Shortcut(Base):
     button = relationship("Button", back_populates="shortcuts")
     keycodes = Column(String)
 
+    def get_keycodes_in_readable_format(self):
+        return "+".join(map(lambda x: key_label_dictionary[int(x)], self.keycodes.split(",")))
+
     def __init__(self, keycodes):
         self.keycodes = keycodes
 
@@ -71,4 +75,33 @@ class Shortcut(Base):
         return self.keycodes
 
 
+class ShortcutStat(Base):
+    __tablename__ = 'shortcut_stat'
 
+    id = Column(Integer, primary_key=True)
+    shortcut_id = Column(Integer, ForeignKey('shortcut.id'))
+    shortcut = relationship("Shortcut")
+    hit_count = Column(Integer)
+
+    def __init__(self, shortcut, hit_count):
+        self.shortcut = shortcut
+        self.hit_count = hit_count
+
+    def __eq__(self, other):
+        return self.shortcut == other.shortcut and self.hit_count == other.hit_count
+
+
+class ButtonStat(Base):
+    __tablename__ = 'button_stat'
+
+    id = Column(Integer, primary_key=True)
+    button_id = Column(Integer, ForeignKey('button.id'))
+    button = relationship("Button")
+    hit_count = Column(Integer)
+
+    def __init__(self, button, hit_count):
+        self.button = button
+        self.hit_count = hit_count
+
+    def __eq__(self, other):
+        return self.button == other.button and self.hit_count == other.hit_count

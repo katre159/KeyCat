@@ -25,7 +25,8 @@ class KeyboardListenerTest(unittest.TestCase):
 
 class KeyboardStateManagerTest(unittest.TestCase):
     def setUp(self):
-        self.mock_event_receiver = EventReceiver(None)
+        self.mock_event_receiver = EventReceiver(
+            button_matcher=None, shortcut_repository=None, statistic_collector=None)
         self.mock_event_receiver.receive_keyboard_state_change_event = MagicMock()
         self.mock_program_identifier = ProgramIdentifier
         self.expected_program = "MockProgram"
