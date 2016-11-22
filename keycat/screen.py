@@ -29,11 +29,5 @@ class ScreenManager(object):
         if len(monitors) == 0:
             raise NoMonitorsFoundError("No monitors found")
         else:
-            monitors_combined_width = 0
-            highest_monitor_height = 0
-            for monitor in monitors:
-                monitors_combined_width += monitor.width
-                if monitor.height > highest_monitor_height:
-                    highest_monitor_height = monitor.height
-
-            return (monitors_combined_width, highest_monitor_height)
+            monitor = monitors[0]
+            return (monitor.width, monitor.height)
