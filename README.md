@@ -15,20 +15,20 @@ Current version of KeyCat runs only in Ubuntu (LXDE or Gnome) and works with Chr
 Create a Linux 64 bit virtual machine in VirtualBox and use the downloaded file as existing disk for the machine. Run the machine and visit this page for further install or build instructions.
 The user password is 12345.
 
-## Installation
+## Installation for user
 To install keycat run [install.sh](https://raw.githubusercontent.com/KatreMetsvahi/KeyCat/master/install.sh?token=ADa0PaoXq2_myRT8CRdqMKPGDmwVyzKDks5YNr7bwA%3D%3D) script in terminal:
 ~~~
 sudo sh install.sh
 ~~~
 
-## Running
+### Running
 Run in terminal:
 ~~~
 keycat
 ~~~
 To close type Ctrl+C
 
-## Contributing to the project
+## Installation for developer
 To set up the build environment for keycat follow these steps:
 ### Cloning
 To clone this repository run
