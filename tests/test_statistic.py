@@ -59,3 +59,32 @@ class StatisticCollectorTest(unittest.TestCase):
         self.mock_button_stat_repository.find_button_stat_by_button.assert_called_with(button)
         self.mock_button_stat_repository.save.assert_called_with(ButtonStat(button, 2))
         self.assertEqual(returned_stat, ButtonStat(button, 2))
+
+    def test_calculate_button_effectiveness_statistic_one_shortcut(self):
+        program = "test_program"
+        keycodes = "37,42"
+        shortcut = Shortcut(keycodes)
+        button = Button(program, [], [shortcut])
+        shortcut.button = button
+        self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=ButtonStat(button, 7))
+        self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
+            return_value=ShortcutStat(shortcut, 3))
+        effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
+        self.assertEqual(effectiveness, 30.0)
+
+    def test_calculate_button_effectiveness_statistic_many_shortcuts(self):
+        program = "test_program"
+        keycodes1 = "37,42"
+        keycodes2 = "37,45"
+        shortcut1 = Shortcut(keycodes1)
+        shortcut2 = Shortcut(keycodes2)
+        button = Button(program, [], [shortcut1, shortcut2])
+        shortcut1.button = button
+        shortcut2.button = button
+        self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=ButtonStat(button, 5))
+        self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
+            side_effect=[ShortcutStat(shortcut1, 3), ShortcutStat(shortcut2, 2)])
+        effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
+        self.assertEqual(effectiveness, 50.0)
+
+

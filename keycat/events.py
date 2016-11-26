@@ -13,10 +13,12 @@ class EventReceiver(object):
         button = self.button_matcher.find_button_on_clicked_position(Click(event.click_x, event.click_y),
                                                                      event.screenshot, event.program)
         if button is not None:
-            button_stat = self.statistic_collector.calculate_button_statistics(button)
+            old_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
+            self.statistic_collector.calculate_button_statistics(button)
+            new_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
             message = "To do this action try pressing : " \
                       + " or ".join(map(lambda x: x.get_keycodes_in_readable_format(), button.shortcuts))
-            message += " , button use counter: " + str(button_stat.hit_count)
+            message += " " + self._get_effectiveness_message(old_effectiveness, new_effectiveness)
             Notify.show_notification(message)
 
     def receive_keyboard_state_change_event(self, event):
@@ -24,8 +26,20 @@ class EventReceiver(object):
         shortcut = self.shortcut_repository.find_shortcut_by_keycode_and_program(",".join(map(str, event.pressed_keys))
                                                                                  , event.program)
         if shortcut is not None:
-            shortcut_stat = self.statistic_collector.calculate_shortcut_statistics(shortcut)
-            Notify.show_notification("You have used this shortcut %d times" % (shortcut_stat.hit_count))
+            old_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(shortcut.button)
+            self.statistic_collector.calculate_shortcut_statistics(shortcut)
+            new_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(shortcut.button)
+            message = self._get_effectiveness_message(old_effectiveness, new_effectiveness)
+            if message != "":
+                Notify.show_notification(message)
 
     def _save_event_screenshot(self, event):
         event.screenshot.save("screenshot_x_" + str(event.click_x) + "_y_" + str(event.click_y) + ".png", "PNG")
+
+    def _get_effectiveness_message(self, old_effectiveness, new_effectiveness):
+        if old_effectiveness > new_effectiveness:
+            return "Your effectiveness has fallen to %.2f %%. Try to work a bit harder" % new_effectiveness
+        elif old_effectiveness < new_effectiveness:
+            return "Your effectiveness has risen to %.2f %%. Keep up the good work" % new_effectiveness
+        else:
+            return ""
