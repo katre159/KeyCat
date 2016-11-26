@@ -1,8 +1,6 @@
-from mouse_events import MouseEventListener, MouseClickEventListener, \
-    FixedSizeScreenshotEventCreator
+from mouse_events import FixedSizeScreenshotEventCreator
 from events import EventReceiver
 from screen import ScreenshotTaker, ScreenManager
-from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
 from repository import ButtonRepository, ShortcutRepository, ShortcutStatRepository, ButtonStatRepository
 from button_matcher import ButtonMatcher
 from template_matcher import CCOEFFNORMEDTemplateMatcher
@@ -19,9 +17,6 @@ statistic_collector = StatisticCollector(shortcut_stat_repository, button_stat_r
 program_identifier = ProgramIdentifier()
 button_matcher = ButtonMatcher(CCOEFFNORMEDTemplateMatcher(), button_repository)
 event_receiver = EventReceiver(button_matcher, shortcut_repository, statistic_collector)
-keyboard_event_listener = KeyboardEventListener(KeyboardListener(
-        KeyboardStateManager(event_receiver, program_identifier)))
+
 mouse_event_creator = FixedSizeScreenshotEventCreator(ScreenshotTaker(), ScreenManager(), program_identifier,
-                                                          700, 100)
-mouse_click_listener = MouseClickEventListener(
-        MouseEventListener(mouse_event_creator, event_receiver))
+                                                      700, 100)

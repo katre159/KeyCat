@@ -39,8 +39,6 @@ setup(
         'console_scripts': [
             'keycat=keycat.__main__:main',
         ],
-        'gui_scripts' :
-            ['keycat_qui=keycat.__gui_main__:main']
     },
     tests_require=['mock'],
     cmdclass={'install': OverrideInstall}
