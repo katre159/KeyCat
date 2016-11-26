@@ -45,7 +45,7 @@ git pull
 ### Build from source code
 To build project run in terminal
 ~~~
-sudo apt-get install libnotify-bin python-opencv python-pip
+sudo apt-get install libnotify-bin python-opencv python-pip python-gobject imagemagick
 sudo pip install Pillow pyscreenshot PyUserInput screeninfo python-xlib SQLAlchemy
 ~~~
 
