@@ -83,4 +83,26 @@ class StatisticCollectorTest(unittest.TestCase):
         effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
         self.assertEqual(effectiveness, 50.0)
 
+    def test_collect_button_effectiveness_statistic_button_stat_is_none(self):
+        program = "test_program"
+        keycodes = "37,42"
+        shortcut = Shortcut(keycodes)
+        button = Button(program, [], [shortcut])
+        shortcut.button = button
+        self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=None)
+        self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
+            return_value=ShortcutStat(shortcut, 3))
+        effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
+        self.assertEqual(effectiveness, 100.0)
 
+    def test_collect_button_effectiveness_statistic_shortcut_stat_is_none(self):
+        program = "test_program"
+        keycodes = "37,42"
+        shortcut = Shortcut(keycodes)
+        button = Button(program, [], [shortcut])
+        shortcut.button = button
+        self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=ButtonStat(button, 7))
+        self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
+            return_value=None)
+        effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
+        self.assertEqual(effectiveness, 0.0)
