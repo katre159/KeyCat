@@ -6,19 +6,32 @@ class StatisticCollector(object):
         self.shortcut_stat_repository = shortcut_stat_repository
         self.button_stat_repository = button_stat_repository
 
-    def calculate_button_statistics(self, button):
+    def calculate_button_effectiveness_statistic(self, button):
+        button_hit_count = 0
+        shortcuts_hit_count = 0
+
+        button_stat = self._get_button_stat(button)
+        if button_stat is not None:
+            button_hit_count = button_stat.hit_count
+
+        shortcuts_hit_count = sum(map(lambda x: self._get_shortcut_stat(x).hit_count, button.shortcuts))
+
+        total_action_count = button_hit_count + shortcuts_hit_count
+
+        if total_action_count > 0:
+            return (float(shortcuts_hit_count) / float(total_action_count))*100
+        else:
+            return 0
+
+    def collect_button_statistics(self, button):
         button_stat = self._get_button_stat(button)
         button_stat.hit_count += 1
         self.button_stat_repository.save(button_stat)
 
-        return button_stat
-
-    def calculate_shortcut_statistics(self, shortcut):
+    def collect_shortcut_statistics(self, shortcut):
         shortcut_stat = self._get_shortcut_stat(shortcut)
         shortcut_stat.hit_count += 1
         self.shortcut_stat_repository.save(shortcut_stat)
-
-        return shortcut_stat
 
     def _get_shortcut_stat(self, shortcut):
         shortcut_stat = self.shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program(
