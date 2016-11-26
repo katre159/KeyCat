@@ -1,6 +1,8 @@
 from pyscreenshot import grab
 from screeninfo import get_monitors
-
+from pyscreenshot.plugins import wxscreen, gtkpixbuf, qtgrabwindow, scrot, \
+    imagemagick, mac_quartz, mac_screencapture, pil
+import pyscreenshot
 
 class Error(Exception):
     """Base class for exceptions in this module."""
@@ -19,7 +21,7 @@ class ScreenshotTaker(object):
 
     @staticmethod
     def take_fixed_size_screen_shot(bbox):
-        return grab(bbox=bbox)
+        return grab(bbox=bbox, backend="imagemagick")
 
 
 class ScreenManager(object):
