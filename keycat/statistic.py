@@ -23,19 +23,15 @@ class StatisticCollector(object):
         else:
             return 0
 
-    def calculate_button_statistics(self, button):
+    def collect_button_statistics(self, button):
         button_stat = self._get_button_stat(button)
         button_stat.hit_count += 1
         self.button_stat_repository.save(button_stat)
 
-        return button_stat
-
-    def calculate_shortcut_statistics(self, shortcut):
+    def collect_shortcut_statistics(self, shortcut):
         shortcut_stat = self._get_shortcut_stat(shortcut)
         shortcut_stat.hit_count += 1
         self.shortcut_stat_repository.save(shortcut_stat)
-
-        return shortcut_stat
 
     def _get_shortcut_stat(self, shortcut):
         shortcut_stat = self.shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program(

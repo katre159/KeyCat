@@ -14,8 +14,9 @@ class EventReceiver(object):
                                                                      event.screenshot, event.program)
         if button is not None:
             old_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
-            self.statistic_collector.calculate_button_statistics(button)
+            self.statistic_collector.collect_button_statistics(button)
             new_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(button)
+
             message = "To do this action try pressing : " \
                       + " or ".join(map(lambda x: x.get_keycodes_in_readable_format(), button.shortcuts))
             message += " " + self._get_effectiveness_message(old_effectiveness, new_effectiveness)
@@ -27,8 +28,9 @@ class EventReceiver(object):
                                                                                  , event.program)
         if shortcut is not None:
             old_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(shortcut.button)
-            self.statistic_collector.calculate_shortcut_statistics(shortcut)
+            self.statistic_collector.collect_shortcut_statistics(shortcut)
             new_effectiveness = self.statistic_collector.calculate_button_effectiveness_statistic(shortcut.button)
+
             message = self._get_effectiveness_message(old_effectiveness, new_effectiveness)
             if message != "":
                 Notify.show_notification(message)
