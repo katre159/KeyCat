@@ -58,7 +58,7 @@ def load_buttons_from_config(directory, config_file):
     for button in data["buttons"]:
         templates = get_templates(button["templates"])
         shortcuts = get_shortcuts(button["shortcuts"])
-        buttons.append(Button(button["program"], templates, shortcuts))
+        buttons.append(Button(button["id"], button["program"], button["name"], templates, shortcuts))
 
     return buttons
 
