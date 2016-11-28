@@ -21,8 +21,9 @@ class StatisticCollectorTest(unittest.TestCase):
     def test_collect_shortcut_statistics_not_exists_in_database_added_with_hitcount_1(self):
         keycodes = "37,42"
         program = "test_program"
+        id = "test_button_id"
         shortcut = Shortcut(keycodes)
-        shortcut.button = Button(program, [], [])
+        shortcut.button = Button(id, program, "", [], [])
 
         self.statistic_collector.collect_shortcut_statistics(shortcut)
         self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program.assert_called_with(
@@ -33,7 +34,8 @@ class StatisticCollectorTest(unittest.TestCase):
         keycodes = "37,42"
         program = "test_program"
         shortcut = Shortcut(keycodes)
-        shortcut.button = Button(program, [], [])
+        id = "test_button_id"
+        shortcut.button = Button(id, program, "", [], [])
         self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
             return_value=ShortcutStat(shortcut, 1))
         self.statistic_collector.collect_shortcut_statistics(shortcut)
@@ -43,14 +45,16 @@ class StatisticCollectorTest(unittest.TestCase):
 
     def test_collect_button_statistics_not_exists_in_database_added_with_hitcount_1(self):
         program = "test_program"
-        button = Button(program, [], [])
+        id = "test_button_id"
+        button = Button(id, program, "", [], [])
         self.statistic_collector.collect_button_statistics(button)
         self.mock_button_stat_repository.find_button_stat_by_button.assert_called_with(button)
         self.mock_button_stat_repository.save.assert_called_with(ButtonStat(button, 1))
 
     def test_collect_button_statistics_exists_added_with_inc_hitcount(self):
         program = "test_program"
-        button = Button(program, [], [])
+        id = "test_button_id"
+        button = Button(id, program, "", [], [])
         self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=ButtonStat(button, 1))
         self.statistic_collector.collect_button_statistics(button)
         self.mock_button_stat_repository.find_button_stat_by_button.assert_called_with(button)
@@ -59,8 +63,9 @@ class StatisticCollectorTest(unittest.TestCase):
     def test_collect_button_effectiveness_statistic_one_shortcut(self):
         program = "test_program"
         keycodes = "37,42"
+        id = "test_button_id"
         shortcut = Shortcut(keycodes)
-        button = Button(program, [], [shortcut])
+        button = Button(id, program, "", [], [shortcut])
         shortcut.button = button
         self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=ButtonStat(button, 7))
         self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
@@ -72,9 +77,10 @@ class StatisticCollectorTest(unittest.TestCase):
         program = "test_program"
         keycodes1 = "37,42"
         keycodes2 = "37,45"
+        id = "test_button_id"
         shortcut1 = Shortcut(keycodes1)
         shortcut2 = Shortcut(keycodes2)
-        button = Button(program, [], [shortcut1, shortcut2])
+        button = Button(id, program, "", [], [shortcut1, shortcut2])
         shortcut1.button = button
         shortcut2.button = button
         self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=ButtonStat(button, 5))
@@ -85,9 +91,10 @@ class StatisticCollectorTest(unittest.TestCase):
 
     def test_collect_button_effectiveness_statistic_button_stat_is_none(self):
         program = "test_program"
+        id = "test_button_id"
         keycodes = "37,42"
         shortcut = Shortcut(keycodes)
-        button = Button(program, [], [shortcut])
+        button = Button(id, program, "", [], [shortcut])
         shortcut.button = button
         self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=None)
         self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
@@ -98,8 +105,9 @@ class StatisticCollectorTest(unittest.TestCase):
     def test_collect_button_effectiveness_statistic_shortcut_stat_is_none(self):
         program = "test_program"
         keycodes = "37,42"
+        id = "test_button_id"
         shortcut = Shortcut(keycodes)
-        button = Button(program, [], [shortcut])
+        button = Button(id, program, "", [], [shortcut])
         shortcut.button = button
         self.mock_button_stat_repository.find_button_stat_by_button = MagicMock(return_value=ButtonStat(button, 7))
         self.mock_shortcut_stat_repository.find_shortcut_stat_by_keycode_and_program = MagicMock(
