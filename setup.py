@@ -28,12 +28,12 @@ setup(
     description='KeyCat',
     test_suite="tests",
     install_requires=[
-        'Pillow==3.4.2',
-        'pyscreenshot==0.4.2',
-        'PyUserInput==0.1.11',
-        'screeninfo==0.2.1',
-        'python-xlib==0.17',
-        'SQLAlchemy==1.1.3'
+        'Pillow>=3.4.2',
+        'pyscreenshot>=0.4.2',
+        'PyUserInput>=0.1.11',
+        'screeninfo>=0.2.1',
+        'python-xlib>=0.17',
+        'SQLAlchemy>=1.1.3'
     ],
     entry_points={
         'console_scripts': [
