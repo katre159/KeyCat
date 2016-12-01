@@ -1,11 +1,14 @@
 from setuptools import setup, find_packages
 from keycat import _VERSION
 from setuptools.command.install import install
+from keycat.desktop_entry import create_desktop_entry
 import os
 
 
 class OverrideInstall(install):
     def run(self):
+        create_desktop_entry()
+
         mode = 0777
         install.run(self)
 
