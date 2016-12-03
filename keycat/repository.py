@@ -17,6 +17,10 @@ class AbstractButtonRepository(BaseRepository):
         pass
 
     @abc.abstractmethod
+    def delete(self, button):
+        pass
+
+    @abc.abstractmethod
     def find_buttons_by_program(self, program):
         pass
 
@@ -26,7 +30,11 @@ class ButtonRepository(AbstractButtonRepository):
         return self.session.query(Button).all()
 
     def save_button(self, button):
-        self.session.add(button)
+        self.session.merge(button)
+        self.session.commit()
+
+    def delete(self, button):
+        self.session.delete(button)
         self.session.commit()
 
     def find_buttons_by_program(self, program):

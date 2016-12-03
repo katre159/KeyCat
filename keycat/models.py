@@ -12,8 +12,8 @@ class Button(Base):
     __tablename__ = 'button'
 
     id = Column(String, primary_key=True)
-    templates = relationship("Template", back_populates="button")
-    shortcuts = relationship("Shortcut", back_populates="button")
+    templates = relationship("Template", back_populates="button", cascade="all, delete-orphan")
+    shortcuts = relationship("Shortcut", back_populates="button", cascade="all, delete-orphan")
     program = Column(String)
     name = Column(String)
 
@@ -25,7 +25,7 @@ class Button(Base):
         self.name = name
 
     def __eq__(self, other):
-        return self.program == other.program and self.templates == other.templates and self.shortcuts == other.shortcuts
+        return self.id == other.id and self.program == other.program
 
     def __repr__(self):
         return self.id + " " + self.program + " " + str(self.shortcuts) + " " + str(self.templates)

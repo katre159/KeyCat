@@ -9,7 +9,7 @@ import json
 
 def setup_database(engine):
     base = Base
-    if not(engine.dialect.has_table(engine, "shortcut_stat") and engine.dialect.has_table(engine, "button_stat")):
+    if not (engine.dialect.has_table(engine, "shortcut_stat") and engine.dialect.has_table(engine, "button_stat")):
         base.metadata.drop_all(engine)
         base.metadata.create_all(engine)
 
@@ -63,7 +63,42 @@ def load_buttons_from_config(directory, config_file):
     return buttons
 
 
+def merge_shortcuts(shortcut, existing_shortcut):
+    shortcut.id = existing_shortcut.id
+    return shortcut
+
+
+def merge_shortcuts_with_existing(shortcuts, existing_shortcuts):
+    merged_shortcuts = []
+    for shortcut in shortcuts:
+        if shortcut in existing_shortcuts:
+            merged_shortcuts.append(merge_shortcuts(shortcut, existing_shortcuts[existing_shortcuts.index(shortcut)]))
+        else:
+            merged_shortcuts.append(shortcut)
+    return merged_shortcuts
+
+
+def merge_buttons(button, existing_button):
+    button.shortcuts = merge_shortcuts_with_existing(button.shortcuts, existing_button.shortcuts)
+    return button
+
+
+def merge_buttons_with_existing(buttons, existing_buttons):
+    merged_buttons = []
+
+    for button in buttons:
+        if button in existing_buttons:
+            merged_buttons.append(merge_buttons(button, existing_buttons[existing_buttons.index(button)]))
+            existing_buttons.remove(button)
+        else:
+            merged_buttons.append(button)
+    return (merged_buttons, existing_buttons)
+
+
 def load_data_to_database(button_repository):
     directory = os.path.dirname(os.path.abspath(__file__))
     buttons = load_buttons_from_config(directory, 'data/buttons_config.json')
-    [button_repository.save_button(button) for button in buttons]
+    existing_buttons = button_repository.find_all_buttons()
+    merged_buttons, buttons_for_deletion = merge_buttons_with_existing(buttons, existing_buttons)
+    [button_repository.save_button(button) for button in merged_buttons]
+    [button_repository.delete(button) for button in buttons_for_deletion]

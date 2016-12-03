@@ -16,8 +16,7 @@ APPINDICATOR_ID = 'keycatindicator'
 
 
 def main():
-    if len(button_repository.find_all_buttons()) == 0:
-        load_data_to_database(button_repository)
+    load_data_to_database(button_repository)
 
     keyboard_event_listener = KeyboardEventListener(KeyboardListener(
         KeyboardStateManager(event_receiver, program_identifier)))
