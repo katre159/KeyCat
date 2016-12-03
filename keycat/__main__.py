@@ -6,7 +6,8 @@ from gi.repository import Gtk as gtk
 
 gi.require_version('AppIndicator3', '0.1')
 from gi.repository import AppIndicator3 as appindicator
-from dependencies import button_repository, event_receiver, mouse_event_creator, program_identifier
+from dependencies import button_repository, event_receiver, mouse_event_creator, program_identifier\
+    ,shortcut_stat_repository, button_stat_repository
 from database import *
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
 from mouse_events import MouseEventListener, MouseClickEventListener
@@ -16,7 +17,7 @@ APPINDICATOR_ID = 'keycatindicator'
 
 
 def main():
-    load_data_to_database(button_repository)
+    load_data_to_database(button_repository, shortcut_stat_repository, button_stat_repository)
 
     keyboard_event_listener = KeyboardEventListener(KeyboardListener(
         KeyboardStateManager(event_receiver, program_identifier)))

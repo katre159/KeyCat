@@ -95,10 +95,18 @@ def merge_buttons_with_existing(buttons, existing_buttons):
     return (merged_buttons, existing_buttons)
 
 
-def load_data_to_database(button_repository):
+def load_data_to_database(button_repository, shortcut_stat_repository, button_stat_repository):
+
+    def delete_removed_buttons(buttons_for_deletion):
+        for button in buttons_for_deletion:
+            shortcut_stat_repository.delete_button_shortcut_stats(button)
+            button_stat_repository.delete_button_stats(button)
+            button_repository.delete(button)
+
     directory = os.path.dirname(os.path.abspath(__file__))
     buttons = load_buttons_from_config(directory, 'data/buttons_config.json')
     existing_buttons = button_repository.find_all_buttons()
     merged_buttons, buttons_for_deletion = merge_buttons_with_existing(buttons, existing_buttons)
     [button_repository.save_button(button) for button in merged_buttons]
-    [button_repository.delete(button) for button in buttons_for_deletion]
+    delete_removed_buttons(buttons_for_deletion)
+
