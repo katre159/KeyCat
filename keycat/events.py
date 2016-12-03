@@ -40,8 +40,10 @@ class EventReceiver(object):
 
     def _get_effectiveness_message(self, old_effectiveness, new_effectiveness):
         if old_effectiveness > new_effectiveness:
-            return "Your effectiveness has fallen to %.2f %%. Try to work a bit harder" % new_effectiveness
+            return "Your effectiveness has decreased by %.2f %%. Try to work a bit harder" \
+                   % (old_effectiveness - new_effectiveness)
         elif old_effectiveness < new_effectiveness:
-            return "Your effectiveness has risen to %.2f %%. Keep up the good work" % new_effectiveness
+            return "Your effectiveness has increased by %.2f %%. Keep up the good work" \
+                   % (new_effectiveness - old_effectiveness)
         else:
             return ""
