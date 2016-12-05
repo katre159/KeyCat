@@ -74,6 +74,7 @@ class DatabaseTest(unittest.TestCase):
         program = "test_program"
         old_name = "test_old"
         new_name = "test_button"
+        button_id = "test_button_id"
         shortcuts = [Shortcut("32,28"), Shortcut("32,30"), Shortcut("32,29")]
         existing_shortcut1 = Shortcut("32,28")
         existing_shortcut1.id = 1
@@ -81,8 +82,8 @@ class DatabaseTest(unittest.TestCase):
         existing_shortcut2.id = 2
         existing_shortcuts = [existing_shortcut1, existing_shortcut2]
         template = Template("121", 100, 100)
-        button = Button(None, program, new_name, [template], shortcuts)
-        existing_button = Button(None, program, old_name, [], existing_shortcuts)
+        button = Button(button_id, program, new_name, [template], shortcuts)
+        existing_button = Button(button_id, program, old_name, [], existing_shortcuts)
         merged_button = merge_buttons(button, existing_button)
         self.assertEqual(len(merged_button.shortcuts), 3)
         self.assertEqual(len(merged_button.templates), 1)
