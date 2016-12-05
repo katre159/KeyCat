@@ -3,10 +3,12 @@ from button_matcher import Click
 
 
 class EventReceiver(object):
+
     def __init__(self, button_matcher, shortcut_repository, statistic_collector):
         self.button_matcher = button_matcher
         self.shortcut_repository = shortcut_repository
         self.statistic_collector = statistic_collector
+        self.effectiveness_change_threshold = 5.0
 
     def receive_mouse_event(self, event):
 
@@ -39,9 +41,10 @@ class EventReceiver(object):
         event.screenshot.save("screenshot_x_" + str(event.click_x) + "_y_" + str(event.click_y) + ".png", "PNG")
 
     def _get_effectiveness_message(self, old_effectiveness, new_effectiveness):
-        if old_effectiveness > new_effectiveness:
-            return "Your effectiveness has fallen to %.2f %%. Try to work a bit harder" % new_effectiveness
-        elif old_effectiveness < new_effectiveness:
-            return "Your effectiveness has risen to %.2f %%. Keep up the good work" % new_effectiveness
+        effectiveness_change = old_effectiveness - new_effectiveness
+        if effectiveness_change > self.effectiveness_change_threshold:
+            return "Your effectiveness has decreased by %.2f %%. Try to work a bit harder" % effectiveness_change
+        elif -effectiveness_change > self.effectiveness_change_threshold:
+            return "Your effectiveness has increased by %.2f %%. Keep up the good work" % -effectiveness_change
         else:
             return ""
