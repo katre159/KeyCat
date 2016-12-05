@@ -42,17 +42,17 @@ To pull the changes in this repository run
 git pull
 ~~~
 
-### Build from source code
-To build project run in terminal
+### Run from source code
+To install all project dependencies run from command line
 ~~~
-sudo apt-get install libnotify-bin python-opencv python-pip python-gobject imagemagick
-sudo pip install Pillow pyscreenshot PyUserInput screeninfo python-xlib SQLAlchemy
+sudo sh setup.sh
 ~~~
+This will also link keycat program in your local (cloned or downloaded) into /usr/local/bin folder. This way you can edit the source file and the changes will take effect when you run the program.
 
-### Run using source code
-~~~~
-python keycat
-~~~~
+Run the program from command line
+~~~
+keycat
+~~~
 
 ### Close program
 ~~~~

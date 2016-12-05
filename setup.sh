@@ -6,4 +6,4 @@ apt-get install python-pip
 apt-get install python-gobject
 apt-get install imagemagick
 
-python setup.py install
+python setup.py develop
