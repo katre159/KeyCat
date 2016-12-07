@@ -1,3 +1,4 @@
 graft keycat/data/*
 include keycat/data/*
 include keycat.desktop
+include keycat.png

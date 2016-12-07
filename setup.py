@@ -16,6 +16,7 @@ class OverrideInstall(install):
                 os.chmod(filepath, mode)
                 
 destination = os.path.join(expanduser("~"), '.local', 'share', 'applications')
+icon_destination = os.path.join(expanduser("~"), '.local', 'share', 'icons', 'hicolor', '256x256', 'apps')
 
 setup(
     name='KeyCat',
@@ -38,7 +39,8 @@ setup(
         'SQLAlchemy>=1.1.3'
     ],
     data_files=[
-        (destination, ['keycat.desktop'])
+        (destination, ['keycat.desktop']),
+        (icon_destination, ['keycat.png'])
     ],
     entry_points={
         'console_scripts': [
