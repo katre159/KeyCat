@@ -5,6 +5,11 @@ import shutil
 
 def create_desktop_entry():
     destination = os.path.join(expanduser("~"), '.local', 'share', 'applications')
-    target = os.path.join('..', 'keycat.desktop')
+    dir = os.path.dirname(__file__)
+    target = os.path.join(dir, '..', 'keycat.desktop')
+
+    print destination
+    print dir
+    print target
 
     shutil.copy(target, destination)

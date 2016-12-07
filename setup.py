@@ -3,11 +3,12 @@ from keycat import _VERSION
 from setuptools.command.install import install
 from keycat.desktop_entry import create_desktop_entry
 import os
+from os.path import expanduser
 
 
 class OverrideInstall(install):
     def run(self):
-        create_desktop_entry()
+        # create_desktop_entry()
 
         mode = 0o777
         install.run(self)
@@ -16,7 +17,8 @@ class OverrideInstall(install):
             if "data/" in filepath:
                 os.chmod(os.path.dirname(filepath), mode)
                 os.chmod(filepath, mode)
-
+                
+destination = os.path.join(expanduser("~"), '.local', 'share', 'applications')
 
 setup(
     name='KeyCat',
@@ -37,6 +39,9 @@ setup(
         'screeninfo>=0.2.1',
         'python-xlib>=0.17',
         'SQLAlchemy>=1.1.3'
+    ],
+    data_files=[
+        (destination, ['keycat.desktop'])
     ],
     entry_points={
         'console_scripts': [
