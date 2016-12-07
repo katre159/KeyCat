@@ -21,7 +21,7 @@ setup(
     name='KeyCat',
     version=_VERSION,
     packages=find_packages(),
-    package_data={'': ['*.db', '*.png', '*.json']},
+    package_data={'': ['*.db', '*.png', '*.json', '*.desktop']},
     url='https://github.com/KatreMetsvahi/KeyCat',
     download_url='https://github.com/KatreMetsvahi/KeyCat/tarball/' + _VERSION,
     license='',
