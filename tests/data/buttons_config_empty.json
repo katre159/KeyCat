@@ -2,6 +2,8 @@
 	"buttons" : [
 		{
 			"program" : "chrome",
+			"id":"chrome_new_tab",
+            "name":"New tab",
 			"templates" : [],
 			"shortcuts" : []
 		}

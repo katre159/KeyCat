@@ -2,6 +2,8 @@
 	"buttons" : [
 		{
 			"program" : "chrome",
+			"id":"chrome_new_tab",
+            "name":"New tab",
 			"templates" : [
 				"data/buttons/chrome/new_tab_template_chrome.png",
 				"data/buttons/chrome/new_tab_button.png",
@@ -12,6 +14,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_new_windows",
+            "name":"New windows",
 			"templates" : [
 				"data/buttons/chrome/new_windows_template_chrome.png"
 			],
@@ -19,6 +23,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_find",
+            "name":"Find",
 			"templates" : [
 				"data/buttons/chrome/find.png"
 			],
@@ -26,6 +32,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_history",
+            "name":"History",
 			"templates" : [
 				"data/buttons/chrome/history.png"
 			],
@@ -33,6 +41,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_bookmark_manager",
+            "name":"Bookmark manager",
 			"templates" : [
 				"data/buttons/chrome/book_manager.png"
 			],
@@ -40,6 +50,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_bookmark_open_tabs",
+            "name":"Bookmark open tabs",
 			"templates" : [
 				"data/buttons/chrome/book_open.png",
 				"data/buttons/chrome/bookmark_button.png",
@@ -49,6 +61,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_bookmark",
+            "name":"Bookmark",
 			"templates" : [
 				"data/buttons/chrome/bookmark.png"
 			],
@@ -56,6 +70,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_clear_browsing",
+            "name":"CLear browsing",
 			"templates" : [
 				"data/buttons/chrome/clear_browsing.png"
 			],
@@ -63,6 +79,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_dev_tools",
+            "name":"Developer tools",
 			"templates" : [
 				"data/buttons/chrome/dev_tools.png",
 				"data/buttons/chrome/inspect.png"
@@ -71,6 +89,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_downloads",
+            "name":"Downloads",
 			"templates" : [
 				"data/buttons/chrome/downloads.png"
 			],
@@ -78,6 +98,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_exit",
+            "name":"Exit",
 			"templates" : [
 				"data/buttons/chrome/exit.png"
 			],
@@ -85,6 +107,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_new_incognito",
+            "name":"New incognito window",
 			"templates" : [
 				"data/buttons/chrome/new_incognito.png"
 			],
@@ -92,6 +116,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_print",
+            "name":"Print",
 			"templates" : [
 				"data/buttons/chrome/print.png",
 				"data/buttons/chrome/print_2.png",
@@ -101,6 +127,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_report",
+            "name":"Report",
 			"templates" : [
 				"data/buttons/chrome/report.png"
 			],
@@ -108,6 +136,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_save_as",
+            "name":"Save as",
 			"templates" : [
 				"data/buttons/chrome/save_as.png",
 				"data/buttons/chrome/save_as_2.png",
@@ -117,6 +147,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_show_bookmarks_bar",
+            "name":"Show bookmarks bar",
 			"templates" : [
 				"data/buttons/chrome/show_bookmarks_bar.png",
               "data/buttons/chrome/show_bookmarks_bar2.png"
@@ -125,6 +157,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_back_button",
+            "name":"Back button",
 			"templates" : [
 				"data/buttons/chrome/back_button.png",
 				"data/buttons/chrome/back_text.png"
@@ -133,6 +167,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_close_tab",
+            "name":"Close tab",
 			"templates" : [
 				"data/buttons/chrome/close.png",
 				"data/buttons/chrome/close_tab.png"
@@ -141,6 +177,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_forward",
+            "name":"Forward",
 			"templates" : [
 				"data/buttons/chrome/forward_button.png",
 				"data/buttons/chrome/forward_text.png"
@@ -149,6 +187,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_paste",
+            "name":"Paste",
 			"templates" : [
 				"data/buttons/chrome/paste.png",
 				"data/buttons/chrome/paste_2.png"
@@ -157,6 +197,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_reload",
+            "name":"Reload",
 			"templates" : [
 				"data/buttons/chrome/reload.png",
 				"data/buttons/chrome/reload_text.png",
@@ -166,6 +208,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_copy",
+            "name":"Copy",
 			"templates" : [
 				"data/buttons/chrome/copy.png"
 			],
@@ -173,6 +217,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_reopen_closed",
+            "name":"Reopen closed",
 			"templates" : [
 				"data/buttons/chrome/reopen_closed.png",
 				"data/buttons/chrome/reopen_closed_tab.png"
@@ -181,6 +227,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_cut",
+            "name":"Cut",
 			"templates" : [
 				"data/buttons/chrome/cut.png"
 			],
@@ -188,6 +236,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_select_all",
+            "name":"Select all",
 			"templates" : [
 				"data/buttons/chrome/select_all.png"
 			],
@@ -195,6 +245,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_undo",
+            "name":"Undo",
 			"templates" : [
 				"data/buttons/chrome/undo.png"
 			],
@@ -202,6 +254,8 @@
 		},
 		{
 			"program" : "chrome",
+            "id":"chrome_view_page_source",
+            "name":"View page source",
 			"templates" : [
 				"data/buttons/chrome/view_page_source.png"
 			],

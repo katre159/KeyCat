@@ -2,6 +2,8 @@
 	"buttons" : [
 		{
 			"program" : "chrome",
+			"id":"chrome_new_tab",
+            "name":"New tab",
 			"templates" : [
 				"data/buttons/chrome/new_tab_template_chrome.png",
 				"data/buttons/chrome/new_windows_template_chrome.png"
@@ -10,6 +12,8 @@
 		},
 		{
 			"program" : "chrome2",
+            "id":"chrome_new_window",
+            "name":"New window",
 			"templates" : [
 				"data/buttons/chrome/new_windows_template_chrome.png"
 			],
