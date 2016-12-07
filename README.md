@@ -63,3 +63,8 @@ Ctrl + C
 ~~~~
 python setup.py test
 ~~~~
+
+
+###Feedback
+Give us feedback:
+https://goo.gl/forms/QIYtO0rRFYkRwBMn2
