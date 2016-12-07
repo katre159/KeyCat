@@ -8,8 +8,4 @@ def create_desktop_entry():
     dir = os.path.dirname(__file__)
     target = os.path.join(dir, '..', 'keycat.desktop')
 
-    print destination
-    print dir
-    print target
-
     shutil.copy(target, destination)
