@@ -38,7 +38,7 @@ setup(
         'SQLAlchemy>=1.1.3'
     ],
     data_files=[
-        (destination, ['keycat.desktop'])
+        (destination, ['./keycat.desktop'])
     ],
     entry_points={
         'console_scripts': [
