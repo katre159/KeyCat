@@ -9,7 +9,7 @@ class OverrideInstall(install):
     def run(self):
         create_desktop_entry()
 
-        mode = 0777
+        mode = 0o777
         install.run(self)
 
         for filepath in self.get_outputs():
