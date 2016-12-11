@@ -11,9 +11,7 @@ from dependencies import button_repository, event_receiver, mouse_event_creator,
 from database import *
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
 from mouse_events import MouseEventListener, MouseClickEventListener
-from os.path import expanduser
 import signal
-import shutil
 
 APPINDICATOR_ID = 'keycatindicator'
 
@@ -32,11 +30,7 @@ def main():
     mouse_click_listener.daemon = True
     mouse_click_listener.start()
 
-    icon_destination = os.path.join(expanduser("~"), '.local', 'share', 'icons', 'hicolor', '22x22', 'apps', 'keycat-small.png')
-    if not os.path.isfile(icon_destination):
-        os.makedirs(os.path.join(expanduser("~"), '.local', 'share', 'icons', 'hicolor', '22x22', 'apps'))
-        shutil.copy('keycat-small.png', icon_destination)
-    indicator = appindicator.Indicator.new(APPINDICATOR_ID, icon_destination,
+    indicator = appindicator.Indicator.new(APPINDICATOR_ID, gtk.STOCK_INFO,
                                            appindicator.IndicatorCategory.SYSTEM_SERVICES)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(build_menu())
