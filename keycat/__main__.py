@@ -12,11 +12,22 @@ from database import *
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
 from mouse_events import MouseEventListener, MouseClickEventListener
 import signal
+import fcntl, sys
 
 APPINDICATOR_ID = 'keycatindicator'
+lock_file = open('keycat.lock', 'w')
+
+
+def lock_program():
+    try:
+        fcntl.lockf(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except IOError:
+        print('Another instance of KeyCat is already running.')
+        sys.exit(0)
 
 
 def main():
+    lock_program()
     load_data_to_database(button_repository, shortcut_stat_repository, button_stat_repository)
 
     keyboard_event_listener = KeyboardEventListener(KeyboardListener(
