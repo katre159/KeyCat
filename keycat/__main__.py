@@ -15,7 +15,7 @@ import signal
 import fcntl, os
 
 APPINDICATOR_ID = 'keycatindicator'
-lock_file = open(os.path.expanduser('~/keycat.lock'), 'w')
+lock_file = open(os.path.expanduser('~/.keycat.lock'), 'w')
 
 
 def lock_program():
