@@ -12,10 +12,10 @@ from database import *
 from keyboard_events import KeyboardEventListener, KeyboardListener, KeyboardStateManager
 from mouse_events import MouseEventListener, MouseClickEventListener
 import signal
-import fcntl, sys
+import fcntl, os
 
 APPINDICATOR_ID = 'keycatindicator'
-lock_file = open('keycat.lock', 'w')
+lock_file = open(os.path.expanduser('~/keycat.lock'), 'w')
 
 
 def lock_program():
