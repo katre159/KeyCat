@@ -14,11 +14,22 @@ from mouse_events import MouseEventListener, MouseClickEventListener
 from os.path import expanduser
 import signal
 import shutil
+import fcntl, os
 
 APPINDICATOR_ID = 'keycatindicator'
+lock_file = open(os.path.expanduser('~/.keycat.lock'), 'w')
+
+
+def lock_program():
+    try:
+        fcntl.lockf(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except IOError:
+        print('Another instance of KeyCat is already running.')
+        sys.exit(0)
 
 
 def main():
+    lock_program()
     load_data_to_database(button_repository, shortcut_stat_repository, button_stat_repository)
 
     keyboard_event_listener = KeyboardEventListener(KeyboardListener(

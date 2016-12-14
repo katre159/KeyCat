@@ -260,6 +260,87 @@
 				"data/buttons/chrome/view_page_source.png"
 			],
 			"shortcuts" : [[37, 30]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_algebraic",
+            "name":"Notation mode: algebraic",
+			"templates" : [
+				"data/buttons/galculator/algebraic.png"
+			],
+			"shortcuts" : [[37, 38]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_copy",
+            "name":"Copy display value",
+			"templates" : [
+				"data/buttons/galculator/copy.png"
+			],
+			"shortcuts" : [[37, 54]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_cut",
+            "name":"Cut display value",
+			"templates" : [
+				"data/buttons/galculator/cut.png"
+			],
+			"shortcuts" : [[37, 53]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_formula",
+            "name":"Notation mode: formula entry",
+			"templates" : [
+				"data/buttons/galculator/formula.png"
+			],
+			"shortcuts" : [[37, 41]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_paste",
+            "name":"Paste and append to display value",
+			"templates" : [
+				"data/buttons/galculator/paste.png"
+			],
+			"shortcuts" : [[37, 55]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_preferences",
+            "name":"Preferences",
+			"templates" : [
+				"data/buttons/galculator/preferences.png"
+			],
+			"shortcuts" : [[37, 33]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_quit",
+            "name":"Quit",
+			"templates" : [
+				"data/buttons/galculator/quit.png"
+			],
+			"shortcuts" : [[37, 24]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_rpn",
+            "name":"Notation mode: reverse polish",
+			"templates" : [
+				"data/buttons/galculator/rpn.png"
+			],
+			"shortcuts" : [[37, 57]]
+		},
+		{
+			"program" : "galculator",
+            "id":"galculator_show_menu",
+            "name":"Show menu bar",
+			"templates" : [
+				"data/buttons/galculator/show_menu.png"
+			],
+			"shortcuts" : [[37, 58]]
 		}
 	]
 }
