@@ -1,6 +1,143 @@
 {
 	"buttons" : [
 		{
+			"program" : "vlc",
+            "id":"vlc_decrease_volume",
+            "name":"Decrease volume",
+			"templates" : [
+				"data/buttons/vlc/decrease_volume_button.png"
+			],
+			"shortcuts" : [[37, 116]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_disable_button",
+            "name":"Disable button",
+			"templates" : [
+				"data/buttons/vlc/disable_button.png"
+			],
+			"shortcuts" : [[50, 55]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_faster_button",
+            "name":"Faster button",
+			"templates" : [
+				"data/buttons/vlc/faster_button.png"
+			],
+			"shortcuts" : [[86]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_faster_fine",
+            "name":"Faster(fine)",
+			"templates" : [
+				"data/buttons/vlc/faster_fine_button.png"
+			],
+			"shortcuts" : [[35]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_fullscreen",
+            "name":"Fullscreen",
+			"templates" : [
+				"data/buttons/vlc/fullscreen_button.png"
+			],
+			"shortcuts" : [[41]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_increase_volume",
+            "name":"Increase volume",
+			"templates" : [
+				"data/buttons/vlc/increase_volume_button.png"
+			],
+			"shortcuts" : [[37, 111]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_mute",
+            "name":"Mute",
+			"templates" : [
+				"data/buttons/vlc/mute_button.png",
+				"data/buttons/vlc/mute_button_small.png",
+				"data/buttons/vlc/volume_button.png"
+			],
+			"shortcuts" : [[58]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_normal_speed",
+            "name":"Normal speed",
+			"templates" : [
+				"data/buttons/vlc/normal_speed_button.png"
+			],
+			"shortcuts" : [[21]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_pause",
+            "name":"Pause",
+			"templates" : [
+				"data/buttons/vlc/pause_button.png"
+			],
+			"shortcuts" : [[65]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_play",
+            "name":"Play",
+			"templates" : [
+				"data/buttons/vlc/play_button.png"
+			],
+			"shortcuts" : [[65]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_record",
+            "name":"Record",
+			"templates" : [
+				"data/buttons/vlc/record_button.png"
+			],
+			"shortcuts" : [[50, 27]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_slower",
+            "name":"Slower",
+			"templates" : [
+				"data/buttons/vlc/slower_button.png"
+			],
+			"shortcuts" : [[20]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_slower_fine",
+            "name":"Slower(fine)",
+			"templates" : [
+				"data/buttons/vlc/slower_fine_button.png"
+			],
+			"shortcuts" : [[34]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_snapshot",
+            "name":"Snapshot",
+			"templates" : [
+				"data/buttons/vlc/snapshot_button.png"
+			],
+			"shortcuts" : [[50, 39]]
+		},
+		{
+			"program" : "vlc",
+            "id":"vlc_specific_time",
+            "name":"Specific time",
+			"templates" : [
+				"data/buttons/vlc/specific_time_button.png"
+			],
+			"shortcuts" : [[37, 28]]
+		},
+		{
 			"program" : "chrome",
 			"id":"chrome_new_tab",
             "name":"New tab",
